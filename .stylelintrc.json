@@ -1,0 +1,9 @@
+{
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+      "indentation": 2,
+      "color-hex-case": "lower",
+      "selector-list-comma-newline-after": "always",
+      "block-opening-brace-space-before": "always"
+    }
+  }

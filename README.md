@@ -91,3 +91,37 @@ For open source projects, say how it is licensed.
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+
+
+
+
+Real Estate Website
+Project Description
+Web application for browsing and searching real estate listings.
+Prerequisites
+
+Node.js (v14 or later)
+npm
+
+Setup Instructions
+
+Clone the repository
+Install dependencies:
+Copynpm install
+
+
+Available Scripts
+
+npm start: Run development server
+npm run build: Build production version
+npm run lint: Run ESLint
+npm run lint:scss: Run Stylelint
+npm run compile:scss: Compile SCSS to CSS
+
+Technologies Used
+
+TypeScript
+Webpack
+Sass
+ESLint
+Stylelint
