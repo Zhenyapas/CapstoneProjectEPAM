@@ -8,10 +8,10 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Хедер -->
+
         <header class="header">
             <div class="header__left">
-                <!-- <a href="#" class="logo">YO!<span>APARTMENTS</span></a> -->
+ 
                 <div class="logo"><img class="logo__svg"src="img/logo2.svg"></div>
             </div>
             <div class="header__right">
@@ -19,20 +19,32 @@
                     <button class="header__toggle__btn header__toggle__btn--disabled">RENT</button>
                     <button class="header__toggle__btn header__toggle__btn--active">SELL</button>
                 </div>
-                <div class="header__city">
-                    <span>CITY:</span>
-                    <span class="city-value">KYIV</span>
+
+                <div class="city-selector">
+                    <div class="city-selector__selected">
+                      <span class="city-selector__current" id="current-city">KYIV</span>
+                      <div class="city-selector__arrow"></div>
+                    </div>
+                    <div class="city-selector__dropdown">
+                      <ul class="city-selector__list">
+                        <li class="city-selector__item city-selector__item--active" data-value="kyiv">KYIV</li>
+                        <li class="city-selector__item" data-value="odessa">ODESSA</li>
+                        <li class="city-selector__item" data-value="lviv">LVIV</li>
+                        <li class="city-selector__item" data-value="kharkiv">KHARKIV</li>
+                        <!-- Додайте більше міст, якщо потрібно -->
+                      </ul>
+                    </div>
                 </div>
             </div>
         </header>
 
-        <!-- Основний контент -->
+
         <main class="main-content">
-            <!-- Ліва колонка з списком -->
+
             <section class="property-column">
                 <div class="property-column__header">
                     <div class="search-container">
-                        <input type="text" class="search-placeholder" placeholder="Search Anything...">
+                        <input type="text" class="search-placeholder" placeholder="Search by adress">
                         <button class="search-button">
                           <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="8"></circle>
@@ -41,13 +53,13 @@
                         </button>
                       </div>
                     <div  class="filter-placeholder" >
-                        <button class="filter-placeholder__button filter-placeholder__button--active"> House</button>
-                        <button class="filter-placeholder__button filter-placeholder__button--disabled"> Apartment</button>
+                        <button class="filter-placeholder__button filter-placeholder__button--disabled"> House</button>
+                        <button class="filter-placeholder__button filter-placeholder__button--active"> Apartment</button>
                     </div>
                 </div>
             </section>
             
-            <!-- Права колонка з картою -->
+
             <section class="map-column">
                 <div class="map-placeholder">Google Map will be here</div>
             </section>

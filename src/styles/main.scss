@@ -95,78 +95,221 @@ body {
     
 }
   
- &__toggle {
 
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 5px 8px 10px;
-    border-radius: 60px;
-    border: none;
-    background-color: #F29E9E;
-
-    @media (max-width: 768px) {
-        height: 40px;
-        padding: 0px 5px 0px 5px;
-      }
-
-
-    &__btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width:75px;
-        height:40px;
-        border-radius: 50px;
-        border:none;
-        transition: 500ms;
-
-        @media (max-width: 768px) {
-            width: 50px;
-            height: 30px;
-            font-size: 8px;
-          }
-    
-
-
-        
-        &--active {
-            background-color: $primary-color;
-            color: $secondary-color;
-        }
-
-        &--disabled {
-            border: none;
-            color: $light-color;
-            background-color: transparent;
-            width: 80px;
-
-            @media (max-width: 768px) {
-                width: 35px;
-            }
-
-            &:hover {
-                color: $text-color; 
-            }
-        }
-    }
-
-    
-
- }
+&__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // Змінено для коректного розташування
+  padding: 5px;
+  border-radius: 60px;
+  border: none;
+  background-color: #F29E9E;
+  position: relative;
   
-  &__city {
-    color: $light-color;
-
-    @media (max-width: 768px) {
-        font-size: 10px;
-       }
+  // Псевдоелемент для анімованого фону
+  &::before {
+    content: '';
+    position: absolute;
+    width: 75px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: $primary-color;
+    transition: transform 0.5s ease;
+    z-index: 1;
+    left: 5px; // Початкова позиція зліва
     
-    .city-value {
-      font-weight: bold;
-      margin-left: 5px;
+    @media (max-width: 768px) {
+      width: 50px;
+      height: 30px;
     }
   }
+  
+  // Стан при активному RENT (початковий стан)
+  &.rent-active::before {
+    transform: translateX(0);
+  }
+  
+  // Стан при активному SELL
+  &.sell-active::before {
+    transform: translateX(75px); // Відстань залежить від вашого дизайну
+    
+    @media (max-width: 768px) {
+      transform: translateX(50px);
+    }
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    transition: color 0.5s ease;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+    
+    @media (max-width: 768px) {
+      width: 50px;
+      height: 30px;
+      font-size: 8px;
+    }
+    
+    &--active {
+      color: $secondary-color;
+    }
+    
+    &--disabled {
+      color: $light-color;
+      
+      &:hover {
+        color: $text-color;
+      }
+    }
+  }
+}
+
+  
+.city-selector {
+    position: relative;
+    user-select: none;
+    color: white;
+
+    
+    &__selected {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      
+ 
+    }
+    
+
+    &__current {
+      margin-right: 5px;
+      font-weight: bold;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
+    }
+    
+    &__item {
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+      white-space: nowrap;
+      
+      &--fade-in {
+        opacity: 0;
+        transform: translateY(-5px);
+        animation: fadeIn 0.3s forwards;
+      }
+      
+      &--fade-out {
+        opacity: 1;
+        animation: fadeOut 0.3s forwards;
+      }
+      
+
+    }
+    
+    &__arrow {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid $light-color;
+      transition: transform 0.3s ease, margin 0.3s ease;
+      margin-left: 5px;
+
+      @media (max-width: 480px) {
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        border-top: 2px solid $light-color;
+        margin-left: 3px;
+      }
+    }
+    
+    &.open {
+      .city-selector__arrow {
+        transform: rotate(180deg);
+      }
+      
+      .city-selector__dropdown {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    &__dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0px; // Змінено з left на right для кращого позиціонування
+      width: auto; // Автоматична ширина
+      min-width: 150px;
+      background-color: $primary-color;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 10px;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      z-index: 100;
+      
+      // Для мобільних пристроїв
+      @media (max-width: 768px) {
+        width: 100%; // Повна ширина на мобільних
+        max-width: 200px; // Але з обмеженням
+      }
+
+    }
+    
+    &__list {
+      list-style: none;
+      padding: 10px 0;
+      margin: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+      }
+    }
+    
+    &__item {
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      white-space: nowrap; // Запобігає переносу тексту
+      
+      &:hover {
+        color: rgba($secondary-color, 0.5);
+      }
+      
+      &--active {
+        color: $secondary-color;
+        font-weight: bold;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+    }
+  }
+
 }
 
 // Основний контент
@@ -183,6 +326,7 @@ body {
 .property-column {
   flex: 0 0 45%;
   background-color: $secondary-color;
+  // border-right: 3px solid $primary-color;
   padding: 20px 40px;
   overflow-y: auto;
   height: calc(100vh - #{$header-height});
@@ -261,40 +405,110 @@ body {
     }
   }
 }
-.filter-placeholder {
-    display:flex;
-    // min-width: 60px;
-    padding: 5px 8px;
-    border-radius: 50px;
-    border: 1px solid $text-color;
+// .filter-placeholder {
+//     display:flex;
+//     // min-width: 60px;
+//     padding: 5px 8px;
+//     border-radius: 50px;
+//     border: 1px solid $text-color;
 
-    &__button {
-        padding: 10px 10px;
-        border-radius: 20px;
-        transition: 100ms;
+//     &__button {
+//         padding: 10px 10px;
+//         border-radius: 20px;
+//         transition: 100ms;
 
-        @media (max-width: 768px) {
-            padding: 10px 10px;
-            font-size: 10px;
-           }
+//         @media (max-width: 768px) {
+//             padding: 10px 10px;
+//             font-size: 10px;
+//            }
 
         
-        &--active {
-            border: none;
-            background-color: $primary-color;
-            color: $light-color;
-        }
+//         &--active {
+//             border: none;
+//             background-color: $primary-color;
+//             color: $light-color;
+//         }
 
-        &--disabled {
-            border: none;
-            color: $text-color;
-            background-color: transparent;
+//         &--disabled {
+//             border: none;
+//             color: $text-color;
+//             background-color: transparent;
 
-            &:hover {
-                color: $primary-color; 
-            }
-        }
+//             &:hover {
+//                 color: $primary-color; 
+//             }
+//         }
+//     }
+// }
+
+.filter-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-radius: 50px;
+  border: 1px solid $text-color;
+  position: relative; // Важливо для позиціонування псевдоелемента
+  
+  // Псевдоелемент для анімованого фону
+  &::before {
+    content: '';
+    position: absolute;
+    width: 70px; // Налаштуйте розмір відповідно до розміру кнопки
+    height: 40px; // Налаштуйте розмір відповідно до розміру кнопки
+    border-radius: 20px;
+    background-color: $primary-color;
+    transition: transform 0.5s ease;
+    z-index: 1;
+    left: 8px; // Відступ зліва для початкової позиції
+    
+    @media (max-width: 768px) {
+      width: 60px; // Менший розмір для мобільних
+      height: 33px;
     }
+  }
+  
+  // Стани для активних кнопок
+  &.house-active::before {
+    transform: translateX(-5px);
+  }
+  
+  &.apartment-active::before {
+    transform: translateX(55px);
+    width: 90px;
+    
+    @media (max-width: 768px) {
+      transform: translateX(48px); // Менша відстань для мобільних
+      width: 70px;
+    }
+  }
+
+  &__button {
+    padding: 10px 10px;
+    border-radius: 20px;
+    transition: color 0.5s ease;
+    background-color: transparent; // Прозорий фон
+    border: none;
+    position: relative; // Для правильного стекінгу
+    z-index: 2; // Вище псевдоелемента
+    
+    @media (max-width: 768px) {
+      padding: 8px 10px;
+      font-size: 10px;
+    }
+    
+    &--active {
+      color: $light-color; // Колір тексту для активної кнопки
+    }
+    
+    &--disabled {
+      color: $text-color; // Колір тексту для неактивної кнопки
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
 }
 
 
@@ -349,3 +563,27 @@ body {
       }
     }
   }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+  }  
+
+  
