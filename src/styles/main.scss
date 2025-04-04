@@ -1,6 +1,17 @@
 // Змінні та налаштування
 @use "sass:color";
 
+
+@import url('https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&family=Inter:wght@400;500;600;700&display=swap');
+
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+
+
+$primary-font: 'Konkhmer Sleokchher', cursive;
+$secondary-font: 'Satoshi', sans-serif;
+$tertiary-font: 'Inter', sans-serif;
+
+
 $primary-color: #ff9292; // Рожевий з хедера
 $secondary-color: #E4F68C; // Жовтий фон
 $text-color: #333;
@@ -17,7 +28,7 @@ $header-height-mobile: 80px;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: $primary-font;
   line-height: 1.6;
   color: $text-color;
 }
@@ -129,8 +140,8 @@ body {
     transform: translateX(0);
   }
   
-  // Стан при активному SELL
-  &.sell-active::before {
+  // Стан при активному SALE
+  &.sale-active::before {
     transform: translateX(75px); // Відстань залежить від вашого дизайну
     
     @media (max-width: 768px) {
@@ -140,6 +151,9 @@ body {
 
   &__btn {
     display: flex;
+    font-family: $primary-font;
+    font-size: 12px;
+    letter-spacing: 0.5px;
     justify-content: center;
     align-items: center;
     width: 75px;
@@ -190,7 +204,7 @@ body {
 
     &__current {
       margin-right: 5px;
-      font-weight: bold;
+      letter-spacing: 0.5px;
       transition: opacity 0.3s ease, transform 0.3s ease;
 
       @media (max-width: 480px) {
@@ -370,11 +384,76 @@ body {
     padding-right: 60px; // Місце для іконки
     border-radius: 20px;
     border: none;
-    font-size: 16px;
+    font-size: 13px;
+    font-family: $tertiary-font;
+    font-weight: 500;
     
     &:focus {
       outline: none;
       box-shadow: 0 0 0 2px rgba($primary-color, 0.3);
+    }
+  }
+
+  .search-dropdown {
+    position: absolute;
+    font-family: $tertiary-font;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    margin-top: 5px;
+    
+    &__searching {
+      padding: 15px;
+      text-align: center;
+      color: #888;
+      font-style: italic;
+      font-family: $tertiary-font;
+      font-weight: 500;
+    }
+    
+    &__empty {
+      padding: 15px;
+      text-align: center;
+      color: #888;
+    }
+    
+    &__item {
+      padding: 12px 15px;
+      font-family: $tertiary-font;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      
+      &:hover {
+        background-color: rgba($secondary-color, 0.2);
+      }
+      
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      &--street {
+        font-weight: 500;
+      }
+    }
+    
+    &__back {
+      padding: 10px 15px;
+      background-color: rgba($secondary-color, 0.1);
+      cursor: pointer;
+      font-weight: 500;
+      color: $primary-color;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      
+      &:hover {
+        background-color: rgba($secondary-color, 0.2);
+      }
     }
   }
   
@@ -403,43 +482,18 @@ body {
       width: 15px;
       height: 15px;
     }
+
+    &:disabled {
+      background-color: color.adjust($primary-color, $lightness: 7%);
+      cursor: not-allowed;
+      
+      &:hover {
+        background-color: #ccc;
+      }
   }
 }
-// .filter-placeholder {
-//     display:flex;
-//     // min-width: 60px;
-//     padding: 5px 8px;
-//     border-radius: 50px;
-//     border: 1px solid $text-color;
+}
 
-//     &__button {
-//         padding: 10px 10px;
-//         border-radius: 20px;
-//         transition: 100ms;
-
-//         @media (max-width: 768px) {
-//             padding: 10px 10px;
-//             font-size: 10px;
-//            }
-
-        
-//         &--active {
-//             border: none;
-//             background-color: $primary-color;
-//             color: $light-color;
-//         }
-
-//         &--disabled {
-//             border: none;
-//             color: $text-color;
-//             background-color: transparent;
-
-//             &:hover {
-//                 color: $primary-color; 
-//             }
-//         }
-//     }
-// }
 
 .filter-placeholder {
   display: flex;
@@ -510,6 +564,211 @@ body {
     }
   }
 }
+
+.property-count {
+  margin: -10px 20px;
+  padding: 10px 0;
+  
+  &__text {
+    font-size: 13px;
+    font-family: $tertiary-font;
+    font-weight: 300;
+    color: $text-color;
+  }
+  
+  &__number {
+    font-weight: 700;
+  }
+}
+
+.property-list {
+  margin-top: 20px;
+}
+
+.property-card {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+  
+  &__image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease;
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+  
+  &__expand {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 5;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $primary-color;
+    }
+    
+    &:hover {
+      background-color: white;
+    }
+  }
+  
+  &__slide-indicator {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 12px;
+    z-index: 5;
+  }
+  
+  &__nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 5;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+      color: $text-color;
+    }
+    
+    &:hover {
+      background-color: $primary-color;
+      
+      svg {
+        color: white;
+      }
+    }
+    
+    &--prev {
+      left: 15px;
+    }
+    
+    &--next {
+      right: 15px;
+    }
+  }
+  
+  &__info {
+    padding: 20px;
+  }
+  
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+    font-family: $secondary-font;
+    margin-top: 10px;
+    color: $text-color;
+  }
+  
+  &__address {
+    font-size: 16px;
+    font-family: $secondary-font;
+    color: rgba($text-color, 0.7);
+    // margin: 0 0 15px;
+    margin-top: 0px;
+  }
+
+  &__description {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: $tertiary-font;
+    color: rgba($text-color, 1);
+    margin: 10px 0 15px ;
+  }
+  
+  &__price {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: $secondary-font;
+    color: $text-color;
+  }
+  
+  &__empty {
+    text-align: center;
+    padding: 40px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    
+    p {
+      font-size: 18px;
+      color: rgba($text-color, 0.7);
+    }
+  }
+}
+
+// Додаткові медіа-запити для адаптивності
+@media (max-width: 768px) {
+  .property-card {
+    &__image {
+      height: 240px;
+    }
+    
+    &__title {
+      font-size: 20px;
+    }
+    
+    &__address {
+      font-size: 14px;
+    }
+    
+    &__price {
+      font-size: 24px;
+    }
+  }
+}
+
 
 
 

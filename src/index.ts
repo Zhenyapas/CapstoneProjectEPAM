@@ -4,12 +4,18 @@ import { HeaderToggleComponent } from './components/toggle/HeaderToggleComponent
 import { FilterToggleComponent } from './components/toggle/FilterToggleComponent';
 import { CitySelector } from './components/city/CitySelector';
 import { MapComponent } from './components/map/MapComponent';
-import { ListingType, PropertyType, City } from './models/types';
+import { ListingType, PropertyType, City, Adress } from './models/types';
+import { PropertyCounter } from './components/property/PropertyCounter';
+import { SearchComponent } from './components/search/SearchComponent';
+import { PropertyListComponent } from './components/property/PropertyListComponent';
 
 // Створюємо state managers для різних частин стану
 const listingTypeState = new StateManager<ListingType>('rent');
 const propertyTypeState = new StateManager<PropertyType>('house');
 const cityState = new StateManager<City>('kyiv');
+const addressState = new StateManager<Adress>(null);
+
+
 
 // Підписуємося на всі зміни стану для логування
 listingTypeState.subscribe(value => {
@@ -32,5 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
   new CitySelector('.city-selector', cityState);
   
   // Ініціалізуємо карту та підписуємо на зміни міста
-  new MapComponent('.map-placeholder', cityState);
+  const mapComponent = new MapComponent('.map-placeholder', cityState);
+
+  const searchComponent = new SearchComponent('.search-container', listingTypeState, propertyTypeState, cityState);
+  
+  // Отримуємо стан адреси, щоб передати його в лічильник
+  const addressState = searchComponent.getAddressState();
+
+  new PropertyCounter('.property-count', listingTypeState, propertyTypeState, cityState,addressState);
+
+  new PropertyListComponent('.property-list', listingTypeState, propertyTypeState, cityState, addressState, mapComponent);
+
 });

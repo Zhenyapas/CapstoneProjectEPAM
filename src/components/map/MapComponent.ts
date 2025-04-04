@@ -11,12 +11,14 @@ export class MapComponent {
   private mapElement: HTMLElement | null = null;
   private map: google.maps.Map | null = null;
   private marker: google.maps.Marker | null = null;
+  private activeMarker: google.maps.Marker | null = null;
   private cityCoordinates: Record<string, Coordinates> = {
     'kyiv': { lat: 50.4501, lng: 30.5234 },
     'lviv': { lat: 49.8397, lng: 24.0297 },
     'odessa': { lat: 46.4825, lng: 30.7233 },
     'kharkiv': { lat: 49.9935, lng: 36.2304 }
   };
+  private tempMarker: google.maps.Marker | null = null;
 
   constructor(
     mapElementSelector: string,
@@ -38,6 +40,70 @@ export class MapComponent {
       // Встановлюємо початкове місто
       this.updateMap(this.cityStateManager.getValue());
     });
+  }
+
+  public showPropertyMarker(coordinates: { lat: number; lng: number }, title: string): void {
+    if (!this.map) return;
+    
+    // Видаляємо попередній тимчасовий маркер, якщо він є
+    if (this.tempMarker) {
+      this.tempMarker.setMap(null);
+      this.tempMarker = null;
+    }
+
+    if (this.activeMarker) {
+      this.activeMarker.setMap(null);
+      this.activeMarker = null;
+    }
+    
+    // Створюємо новий тимчасовий маркер
+    this.tempMarker = new google.maps.Marker({
+      position: coordinates,
+      map: this.map,
+      title: title,
+      animation: google.maps.Animation.DROP,
+      icon: {
+        url: 'img/Pin.svg', // Шлях до вашої іконки
+        scaledSize: new google.maps.Size(60, 60), // Розмір іконки
+        origin: new google.maps.Point(0, 0), // Початкова точка іконки
+        anchor: new google.maps.Point(20, 40) // Точка, яка буде прикріплена до позиції маркера (зазвичай внизу іконки)
+      }
+    });
+    
+    // Центруємо карту на маркері
+    this.map.panTo(coordinates);
+  }
+  
+  // Додаємо метод для прибирання тимчасового маркера
+  public hidePropertyMarker(): void {
+    if (this.tempMarker) {
+      this.tempMarker.setMap(null);
+      this.tempMarker = null;
+    }
+    
+    // Повертаємо карту до основного міста
+    if (this.map) {
+      const cityCoordinates = this.getCoordinatesForCity(this.cityStateManager.getValue());
+      this.map.panTo(cityCoordinates);
+    }
+  }
+
+  public clearAllMarkers(): void {
+    if (this.tempMarker) {
+      this.tempMarker.setMap(null);
+      this.tempMarker = null;
+    }
+    
+    if (this.activeMarker) {
+      this.activeMarker.setMap(null);
+      this.activeMarker = null;
+    }
+    
+    // Повертаємо карту до основного міста
+    if (this.map) {
+      const cityCoordinates = this.getCoordinatesForCity(this.cityStateManager.getValue());
+      this.map.panTo(cityCoordinates);
+    }
   }
 
   private loadGoogleMapsAPI(): Promise<void> {
@@ -72,7 +138,7 @@ export class MapComponent {
 
     this.map = new google.maps.Map(this.mapElement, {
       center: defaultCoordinates,
-      zoom: 12,
+      zoom: 15,
       styles: this.getMapStyles(), // Кастомний стиль карти
       mapTypeControl: false,
       streetViewControl: false,
@@ -80,13 +146,6 @@ export class MapComponent {
       fullscreenControl: true,
     });
 
-    // Створюємо початковий маркер
-    this.marker = new google.maps.Marker({
-      position: defaultCoordinates,
-      map: this.map,
-      title: defaultCity.toUpperCase(),
-      animation: google.maps.Animation.DROP
-    });
   }
 
   private updateMap(city: City): void {
@@ -100,12 +159,6 @@ export class MapComponent {
     // Змінюємо зум відповідно до міста
     this.map.setZoom(12);
 
-    // Оновлюємо маркер
-    this.marker.setPosition(coordinates);
-    this.marker.setTitle(city.toUpperCase());
-    
-    // Додаємо анімацію до маркера
-    this.marker.setAnimation(google.maps.Animation.DROP);
   }
 
   private getCoordinatesForCity(city: City): Coordinates {

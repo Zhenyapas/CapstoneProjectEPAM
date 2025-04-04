@@ -3,7 +3,7 @@ import { ListingType } from '../../models/types';
 
 export class HeaderToggleComponent {
   private rentButton: HTMLButtonElement | null = null;
-  private sellButton: HTMLButtonElement | null = null;
+  private saleButton: HTMLButtonElement | null = null;
   private container: HTMLDivElement | null = null;
   private activeClass: string;
   private inactiveClass: string;
@@ -21,7 +21,7 @@ export class HeaderToggleComponent {
     
     if (this.container) {
       this.rentButton = this.container.querySelector('button:first-child');
-      this.sellButton = this.container.querySelector('button:last-child');
+      this.saleButton = this.container.querySelector('button:last-child');
       this.init();
     } else {
       console.error(`Header toggle container "${containerSelector}" not found`);
@@ -29,7 +29,7 @@ export class HeaderToggleComponent {
   }
 
   private init(): void {
-    if (!this.container || !this.rentButton || !this.sellButton) {
+    if (!this.container || !this.rentButton || !this.saleButton) {
       console.error('Header toggle components not found');
       return;
     }
@@ -37,9 +37,9 @@ export class HeaderToggleComponent {
     const buttonBaseClass = 'header__toggle__btn';
     
     // Встановлюємо початковий стан залежно від активної кнопки
-    if (this.sellButton.classList.contains(`${buttonBaseClass}${this.activeClass}`)) {
-      this.container.classList.add('sell-active');
-      this.stateManager.setValue('sell');
+    if (this.saleButton.classList.contains(`${buttonBaseClass}${this.activeClass}`)) {
+      this.container.classList.add('sale-active');
+      this.stateManager.setValue('sale');
     } else {
       this.container.classList.add('rent-active');
       this.stateManager.setValue('rent');
@@ -47,7 +47,7 @@ export class HeaderToggleComponent {
 
     // Додаємо обробники подій
     this.rentButton.addEventListener('click', () => this.activateRent(buttonBaseClass));
-    this.sellButton.addEventListener('click', () => this.activateSell(buttonBaseClass));
+    this.saleButton.addEventListener('click', () => this.activateSale(buttonBaseClass));
     
     // Підписуємося на зміни стану
     this.stateManager.subscribe(this.handleStateChange.bind(this));
@@ -59,21 +59,21 @@ export class HeaderToggleComponent {
     if (listingType === 'rent') {
       this.activateRent(buttonBaseClass, false); // false для запобігання циклічних викликів
     } else {
-      this.activateSell(buttonBaseClass, false);
+      this.activateSale(buttonBaseClass, false);
     }
   }
 
   private activateRent(buttonBaseClass: string, updateState: boolean = true): void {
-    if (!this.rentButton || !this.sellButton || !this.container) return;
+    if (!this.rentButton || !this.saleButton || !this.container) return;
 
     this.rentButton.classList.remove(`${buttonBaseClass}${this.inactiveClass}`);
     this.rentButton.classList.add(`${buttonBaseClass}${this.activeClass}`);
     
-    this.sellButton.classList.remove(`${buttonBaseClass}${this.activeClass}`);
-    this.sellButton.classList.add(`${buttonBaseClass}${this.inactiveClass}`);
+    this.saleButton.classList.remove(`${buttonBaseClass}${this.activeClass}`);
+    this.saleButton.classList.add(`${buttonBaseClass}${this.inactiveClass}`);
     
     this.container.classList.add('rent-active');
-    this.container.classList.remove('sell-active');
+    this.container.classList.remove('sale-active');
 
     // Оновлюємо стан, якщо потрібно
     if (updateState) {
@@ -81,21 +81,21 @@ export class HeaderToggleComponent {
     }
   }
 
-  private activateSell(buttonBaseClass: string, updateState: boolean = true): void {
-    if (!this.rentButton || !this.sellButton || !this.container) return;
+  private activateSale(buttonBaseClass: string, updateState: boolean = true): void {
+    if (!this.rentButton || !this.saleButton || !this.container) return;
 
-    this.sellButton.classList.remove(`${buttonBaseClass}${this.inactiveClass}`);
-    this.sellButton.classList.add(`${buttonBaseClass}${this.activeClass}`);
+    this.saleButton.classList.remove(`${buttonBaseClass}${this.inactiveClass}`);
+    this.saleButton.classList.add(`${buttonBaseClass}${this.activeClass}`);
     
     this.rentButton.classList.remove(`${buttonBaseClass}${this.activeClass}`);
     this.rentButton.classList.add(`${buttonBaseClass}${this.inactiveClass}`);
     
-    this.container.classList.add('sell-active');
+    this.container.classList.add('sale-active');
     this.container.classList.remove('rent-active');
 
     // Оновлюємо стан, якщо потрібно
     if (updateState) {
-      this.stateManager.setValue('sell');
+      this.stateManager.setValue('sale');
     }
   }
 }
