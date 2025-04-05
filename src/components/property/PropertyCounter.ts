@@ -67,6 +67,39 @@ export class PropertyCounter {
   // }
 
   // components/property/PropertyCounter.ts
+// private updatePropertyCount(): void {
+//   if (!this.countElement) return;
+  
+//   // Отримуємо поточні значення фільтрів
+//   const listingType = this.listingTypeState.getValue();
+//   const propertyType = this.propertyTypeState.getValue();
+//   const city = this.cityState.getValue();
+  
+//   // Отримуємо відфільтровані елементи
+//   let propertyItems = getFilteredProperties(listingType, propertyType, city);
+  
+//   // Додаткова фільтрація за адресою або вулицею
+//   if (this.addressState) {
+//     const addressFilter = this.addressState.getValue();
+//     if (addressFilter) {
+//       propertyItems = propertyItems.filter(item => 
+//         // Перевіряємо чи це повна адреса чи вулиця
+//         item.address.toLowerCase() === addressFilter.toLowerCase() || 
+//         item.street.toLowerCase() === addressFilter.toLowerCase()
+//       );
+//     }
+//   }
+  
+//   // Оновлюємо текст відповідно до типу нерухомості
+//   const propertyTypeText = propertyType === 'house' ? 'houses' : 'apartments';
+  
+//   // Формуємо повний текст
+//   this.countElement.innerHTML = `
+//     <p class="property-count__text">
+//       There are <span class="property-count__number">${propertyItems.length}</span> ${propertyTypeText} let's take a look!
+//     </p>
+//   `;
+// }
 private updatePropertyCount(): void {
   if (!this.countElement) return;
   
@@ -76,17 +109,16 @@ private updatePropertyCount(): void {
   const city = this.cityState.getValue();
   
   // Отримуємо відфільтровані елементи
-  let propertyItems = getFilteredProperties(listingType, propertyType, city);
+  let result = getFilteredProperties(listingType, propertyType, city);
   
-  // Додаткова фільтрація за адресою або вулицею
+  // Додаткова фільтрація за адресою, якщо вона є
   if (this.addressState) {
     const addressFilter = this.addressState.getValue();
     if (addressFilter) {
-      propertyItems = propertyItems.filter(item => 
-        // Перевіряємо чи це повна адреса чи вулиця
-        item.address.toLowerCase() === addressFilter.toLowerCase() || 
-        item.street.toLowerCase() === addressFilter.toLowerCase()
-      );
+      // Адреса вже враховується в getFilteredProperties
+      result = getFilteredProperties(listingType, propertyType, city, {
+        address: addressFilter
+      });
     }
   }
   
@@ -96,7 +128,7 @@ private updatePropertyCount(): void {
   // Формуємо повний текст
   this.countElement.innerHTML = `
     <p class="property-count__text">
-      There are <span class="property-count__number">${propertyItems.length}</span> ${propertyTypeText} let's take a look!
+      There are <span class="property-count__number">${result.totalItems}</span> ${propertyTypeText} let's take a look!
     </p>
   `;
 }

@@ -47,6 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   new PropertyCounter('.property-count', listingTypeState, propertyTypeState, cityState,addressState);
 
-  new PropertyListComponent('.property-list', listingTypeState, propertyTypeState, cityState, addressState, mapComponent);
+  new PropertyListComponent(
+    '.property-list',
+    '.property-paginator',
+    listingTypeState,
+    propertyTypeState,
+    cityState,
+    addressState,
+    mapComponent
+  );
 
 });

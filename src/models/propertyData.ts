@@ -50,7 +50,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 2,
           description: 'Beautiful modern house with garden in Kyiv center.',
-          images: ['house1.jpg', 'house1-interior.jpg'],
+          images: ['house1.png', 'house1-bath.png','house1-bedroom.png','house1-hall.png'],
           features: ['Garden', 'Parking', 'Terrace'],
           coordinates: { lat: 50.4582, lng: 30.5233 }
         },
@@ -64,7 +64,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 3,
           bathrooms: 2,
           description: 'Spacious family house in Obolon district with river view.',
-          images: ['house2.jpg', 'house2-interior.jpg'],
+          images:  ['house2.png', 'house1-bath.png','house1-bedroom.png','house1-hall.png'],
           features: ['River View', 'Garden', 'Parking'],
           coordinates: { lat: 50.4862, lng: 30.4973 }
         },
@@ -78,7 +78,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 3,
           description: 'Cozy house with modern amenities in the prestigious Pechersk district.',
-          images: ['house3.jpg', 'house3-interior.jpg'],
+          images: ['house3.png', 'house3-hall.png'],
           features: ['Smart Home', 'Garden', 'Terrace', 'Security'],
           coordinates: { lat: 50.4265, lng: 30.5361 }
         }
@@ -94,7 +94,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 5,
           bathrooms: 3,
           description: 'Beautiful villa with sea view and private beach access.',
-          images: ['odessa-house1.jpg', 'odessa-house1-interior.jpg'],
+          images: ['house-odessa1.png', 'house-odessa1-hall.png'],
           features: ['Sea View', 'Beach Access', 'Pool', 'Garden'],
           coordinates: { lat: 46.4846, lng: 30.7326 }
         },
@@ -108,7 +108,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 2,
           description: 'Modern house close to Arcadia beach and entertainment.',
-          images: ['odessa-house2.jpg', 'odessa-house2-interior.jpg'],
+          images: ['house-odessa2.png', 'house-odessa2-hall.png'],
           features: ['Near Beach', 'Garden', 'Parking', 'Terrace'],
           coordinates: { lat: 46.4321, lng: 30.7648 }
         }
@@ -124,7 +124,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 3,
           bathrooms: 2,
           description: 'Charming historic villa in the cultural heart of Lviv.',
-          images: ['lviv-house1.jpg', 'lviv-house1-interior.jpg'],
+          images: ['house1.png', 'house1-bath.png','house1-bedroom.png','house1-hall.png'],
           features: ['Historic Building', 'Garden', 'Fireplace'],
           coordinates: { lat: 49.8397, lng: 24.0523 }
         },
@@ -138,7 +138,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 3,
           bathrooms: 2,
           description: 'Cozy house with beautiful mountain views on the outskirts of Lviv.',
-          images: ['lviv-house2.jpg', 'lviv-house2-interior.jpg'],
+          images: ['house2.png', 'house2-bath.png','house2-bedroom.png','house2-hall.png'],
           features: ['Mountain View', 'Garden', 'Parking'],
           coordinates: { lat: 49.8154, lng: 24.0321 }
         }
@@ -154,7 +154,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 3,
           bathrooms: 2,
           description: 'Modern house in the central district of Kharkiv.',
-          images: ['kharkiv-house1.jpg', 'kharkiv-house1-interior.jpg'],
+          images: ['house3.png', 'house3-bath.png','house3-bedroom.png','house3-hall.png'],
           features: ['Garden', 'Parking', 'Smart Home'],
           coordinates: { lat: 49.9949, lng: 36.2311 }
         },
@@ -168,7 +168,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 2,
           description: 'Spacious family house with a large garden in a quiet area.',
-          images: ['kharkiv-house2.jpg', 'kharkiv-house2-interior.jpg'],
+          images: ['house1.png', 'house1-bath.png','house1-bedroom.png','house1-hall.png'],
           features: ['Large Garden', 'Garage', 'Playground'],
           coordinates: { lat: 49.9825, lng: 36.2567 }
         }
@@ -186,7 +186,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Stylish modern apartment in the heart of Kyiv.',
-          images: ['apt-kyiv1.jpg', 'apt-kyiv1-interior.jpg'],
+          images: ['apt-kyiv1.png', 'apt-kyiv1-bath.png'],
           features: ['City View', 'Balcony', 'Elevator'],
           coordinates: { lat: 50.4492, lng: 30.5244 }
         },
@@ -200,7 +200,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 3,
           bathrooms: 2,
           description: 'Luxury penthouse with panoramic city views.',
-          images: ['apt-kyiv2.jpg', 'apt-kyiv2-interior.jpg'],
+          images: ['apt-kyiv2.png', 'apt-kyiv2-bath.png','apt-kyiv2-bedroom.png'],
           features: ['Panoramic View', 'Terrace', 'Smart Home', 'Parking'],
           coordinates: { lat: 50.4382, lng: 30.5103 }
         },
@@ -214,7 +214,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 1,
           bathrooms: 1,
           description: 'Cozy studio apartment in historic Podil district.',
-          images: ['apt-kyiv3.jpg', 'apt-kyiv3-interior.jpg'],
+          images: ['apt-kyiv3.png', 'apt-kyiv3-bath.png','apt-kyiv3-bedroom.png'],
           features: ['Historic Building', 'Renovated', 'Near Metro'],
           coordinates: { lat: 50.4662, lng: 30.5153 }
         },
@@ -228,7 +228,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 1,
           bathrooms: 1,
           description: 'Cozy studio apartment in historic Podil district.',
-          images: ['apt-kyiv3.jpg', 'apt-kyiv3-interior.jpg'],
+          images: ['apt-kyiv1.png', 'apt-kyiv1-bath.png','apt-kyiv1-bedroom.png'],
           features: ['Historic Building', 'Renovated', 'Near Metro'],
           coordinates: { lat: 50.4661, lng: 30.5152 }
         }
@@ -244,7 +244,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Beautiful apartment with sea view in the center of Odessa.',
-          images: ['apt-odessa1.jpg', 'apt-odessa1-interior.jpg'],
+          images: [],
           features: ['Sea View', 'Balcony', 'Air Conditioning'],
           coordinates: { lat: 46.4836, lng: 30.7343 }
         },
@@ -258,7 +258,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 1,
           bathrooms: 1,
           description: 'Modern studio apartment close to Arcadia beach.',
-          images: ['apt-odessa2.jpg', 'apt-odessa2-interior.jpg'],
+          images: [],
           features: ['Near Beach', 'Pool Access', 'Modern Design'],
           coordinates: { lat: 46.4305, lng: 30.7632 }
         }
@@ -274,7 +274,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 1,
           bathrooms: 1,
           description: 'Charming apartment in a historic building on Rynok Square.',
-          images: ['apt-lviv1.jpg', 'apt-lviv1-interior.jpg'],
+          images: [],
           features: ['Historic Building', 'City View', 'Central Location'],
           coordinates: { lat: 49.8418, lng: 24.0316 }
         },
@@ -288,7 +288,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Modern apartment near Lviv Opera House with city views.',
-          images: ['apt-lviv2.jpg', 'apt-lviv2-interior.jpg'],
+          images: [],
           features: ['City View', 'Balcony', 'Near Opera'],
           coordinates: { lat: 49.8442, lng: 24.0253 }
         }
@@ -304,7 +304,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 1,
           bathrooms: 1,
           description: 'Comfortable apartment in the center of Kharkiv.',
-          images: ['apt-kharkiv1.jpg', 'apt-kharkiv1-interior.jpg'],
+          images: [],
           features: ['City Center', 'Renovated', 'Near Park'],
           coordinates: { lat: 49.9937, lng: 36.2323 }
         },
@@ -318,7 +318,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Modern two-bedroom apartment with all amenities.',
-          images: ['apt-kharkiv2.jpg', 'apt-kharkiv2-interior.jpg'],
+          images: [],
           features: ['Modern Design', 'Balcony', 'Parking'],
           coordinates: { lat: 49.9852, lng: 36.2465 }
         }
@@ -338,7 +338,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 5,
           bathrooms: 3,
           description: 'Luxurious house for sale with swimming pool.',
-          images: ['sale-house1.jpg', 'sale-house1-interior.jpg'],
+          images: ['house1.png', 'house1-bath.png','house1-bedroom.png','house1-hall.png'],
           features: ['Pool', 'Garden', 'Garage', 'Security'],
           coordinates: { lat: 50.4612, lng: 30.5320 }
         },
@@ -352,7 +352,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 6,
           bathrooms: 4,
           description: 'Exclusive modern villa in Koncha-Zaspa with private access to Dnipro river.',
-          images: ['sale-house2.jpg', 'sale-house2-interior.jpg'],
+          images: ['house3.png', 'house3-bath.png','house3-bedroom.png','house3-hall.png'],
           features: ['River Access', 'Pool', 'Tennis Court', 'Smart Home'],
           coordinates: { lat: 50.3265, lng: 30.5715 }
         },
@@ -366,7 +366,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 3,
           description: 'Perfect family house in quiet Osokorky district with good infrastructure.',
-          images: ['sale-house3.jpg', 'sale-house3-interior.jpg'],
+          images: ['house2.png', 'house2-bath.png','house2-bedroom.png','house2-hall.png'],
           features: ['Garden', 'Garage', 'Near Metro', 'School Nearby'],
           coordinates: { lat: 50.3965, lng: 30.6115 }
         }
@@ -382,7 +382,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 5,
           bathrooms: 4,
           description: 'Luxury villa with private beach access and sea view.',
-          images: ['sale-odessa-house1.jpg', 'sale-odessa-house1-interior.jpg'],
+          images: ['house-odessa2.png', 'house-odessa2-hall.png'],
           features: ['Private Beach', 'Pool', 'Garden', 'Security'],
           coordinates: { lat: 46.4553, lng: 30.7658 }
         },
@@ -396,7 +396,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 3,
           description: 'Modern house in prestigious Arcadia district, close to entertainment.',
-          images: ['sale-odessa-house2.jpg', 'sale-odessa-house2-interior.jpg'],
+          images: ['house-odessa1.png', 'house-odessa1-hall.png'],
           features: ['Near Beach', 'Pool', 'Smart Home', 'Garage'],
           coordinates: { lat: 46.4298, lng: 30.7618 }
         }
@@ -412,7 +412,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 3,
           description: 'Beautifully restored historic villa in Lychakiv district.',
-          images: ['sale-lviv-house1.jpg', 'sale-lviv-house1-interior.jpg'],
+          images: [],
           features: ['Historic Building', 'Garden', 'Fireplace', 'Garage'],
           coordinates: { lat: 49.8365, lng: 24.0547 }
         },
@@ -426,7 +426,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 2,
           description: 'Modern family house in green Briukhovychi area with forest nearby.',
-          images: ['sale-lviv-house2.jpg', 'sale-lviv-house2-interior.jpg'],
+          images: [],
           features: ['Forest Nearby', 'Garden', 'Terrace', 'Parking'],
           coordinates: { lat: 49.8921, lng: 23.9567 }
         }
@@ -442,7 +442,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 4,
           bathrooms: 3,
           description: 'Luxury house in prestigious district of Kharkiv.',
-          images: ['sale-kharkiv-house1.jpg', 'sale-kharkiv-house1-interior.jpg'],
+          images: [],
           features: ['Pool', 'Garden', 'Smart Home', 'Security'],
           coordinates: { lat: 49.9965, lng: 36.2605 }
         },
@@ -456,7 +456,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 3,
           bathrooms: 2,
           description: 'Comfortable family house with large garden in quiet area.',
-          images: ['sale-kharkiv-house2.jpg', 'sale-kharkiv-house2-interior.jpg'],
+          images: [],
           features: ['Large Garden', 'Garage', 'Fireplace', 'Terrace'],
           coordinates: { lat: 49.9823, lng: 36.2176 }
         }
@@ -464,6 +464,7 @@ export const propertyData: PropertyDatabase = {
     },
     apartment: {
       kyiv: [
+
         {
           id: 'sale-apartment-kyiv-1',
           title: 'Luxury Apartment on Khreshchatyk',
@@ -502,122 +503,554 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
+          images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png','sale-apt-kyiv3-bedroom.png'],
           features: ['Historic Building', 'High Ceilings', 'Renovated'],
           coordinates: { lat: 50.4627, lng: 30.5165 }
         },
-        {
-          id: 'sale-apartment-kyiv-4',
-          title: 'Spacious Apartment in Podil',
-          address: '40 Sagaidachnogo St, Kyiv',
-          street: 'Sagaidachnogo St',
-          price: 260000,
-          area: 95,
-          bedrooms: 2,
-          bathrooms: 1,
-          description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
-          features: ['Historic Building', 'High Ceilings', 'Renovated'],
-          coordinates: { lat: 50.4625, lng: 30.5165 }
-        },
-        {
-          id: 'sale-apartment-kyiv-5',
-          title: 'Spacious Apartment in Podil',
-          address: '47 Sagaidachnogo St, Kyiv',
-          street: 'Sagaidachnogo St',
-          price: 260000,
-          area: 95,
-          bedrooms: 2,
-          bathrooms: 1,
-          description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
-          features: ['Historic Building', 'High Ceilings', 'Renovated'],
-          coordinates: { lat: 50.4625, lng: 30.5165 }
-        },
-        {
-          id: 'sale-apartment-kyiv-6',
-          title: 'Spacious Apartment in Podil',
-          address: '4 Sagaidachnogo St, Kyiv',
-          street: 'Sagaidachnogo St',
-          price: 260000,
-          area: 95,
-          bedrooms: 2,
-          bathrooms: 1,
-          description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
-          features: ['Historic Building', 'High Ceilings', 'Renovated'],
-          coordinates: { lat: 50.4625, lng: 30.5165 }
-        },
-        {
-          id: 'sale-apartment-kyiv-7',
-          title: 'Spacious Apartment in Podil',
-          address: '15 Sagaidachnogo St, Kyiv',
-          street: 'Sagaidachnogo St',
-          price: 260000,
-          area: 95,
-          bedrooms: 2,
-          bathrooms: 1,
-          description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
-          features: ['Historic Building', 'High Ceilings', 'Renovated'],
-          coordinates: { lat: 50.4625, lng: 30.5165 }
-        },
-        {
-          id: 'sale-apartment-kyiv-7',
-          title: 'Spacious Apartment in Podil',
-          address: '11 Sagaidachnogo St, Kyiv',
-          street: 'Sagaidachnogo St',
-          price: 260000,
-          area: 95,
-          bedrooms: 2,
-          bathrooms: 1,
-          description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
-          features: ['Historic Building', 'High Ceilings', 'Renovated'],
-          coordinates: { lat: 50.4625, lng: 30.5165 }
-        },
-        {
-          id: 'sale-apartment-kyiv-7',
-          title: 'Spacious Apartment in Podil',
-          address: '25 Sagaidachnogo St, Kyiv',
-          street: 'Sagaidachnogo St',
-          price: 260000,
-          area: 95,
-          bedrooms: 2,
-          bathrooms: 1,
-          description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
-          features: ['Historic Building', 'High Ceilings', 'Renovated'],
-          coordinates: { lat: 50.4625, lng: 30.5165 }
-        },
-        {
-          id: 'sale-apartment-kyiv-7',
-          title: 'Spacious Apartment in Podil',
-          address: '19 Sagaidachnogo St, Kyiv',
-          street: 'Sagaidachnogo St',
-          price: 260000,
-          area: 95,
-          bedrooms: 2,
-          bathrooms: 1,
-          description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
-          features: ['Historic Building', 'High Ceilings', 'Renovated'],
-          coordinates: { lat: 50.4625, lng: 30.5165 }
-        },
-        {
-          id: 'sale-apartment-kyiv-7',
-          title: 'Spacious Apartment in Podil',
-          address: '13 Sagaidachnogo St, Kyiv',
-          street: 'Sagaidachnogo St',
-          price: 260000,
-          area: 95,
-          bedrooms: 2,
-          bathrooms: 1,
-          description: 'Charming spacious apartment in historic Podil district.',
-          images: ['sale-apt-kyiv3.jpg', 'sale-apt-kyiv3-interior.jpg'],
-          features: ['Historic Building', 'High Ceilings', 'Renovated'],
-          coordinates: { lat: 50.4625, lng: 30.5165 }
-        },
+
+          {
+            id: 'sale-apartment-kyiv-1',
+            title: 'Luxury Apartment on Khreshchatyk',
+            address: '100 Khreshchatyk St, Kyiv',
+            street: 'Khreshchatyk St',
+            price: 350000,
+            area: 120,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Prestigious apartment on main street of Kyiv with amazing city views.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['City View', 'Balcony', 'Security', 'Parking'],
+            coordinates: { lat: 50.4476, lng: 30.5256 }
+          },
+          {
+            id: 'sale-apartment-kyiv-2',
+            title: 'High-end Condo on Khreshchatyk',
+            address: '87 Khreshchatyk St, Kyiv',
+            street: 'Khreshchatyk St',
+            price: 380000,
+            area: 135,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Premium condo in the heart of Kyiv with modern amenities and city center views.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['City View', 'Concierge', 'Gym', 'Underground Parking'],
+            coordinates: { lat: 50.4482, lng: 30.5251 }
+          },
+          {
+            id: 'sale-apartment-kyiv-3',
+            title: 'Renovated Flat on Khreshchatyk',
+            address: '112 Khreshchatyk St, Kyiv',
+            street: 'Khreshchatyk St',
+            price: 290000,
+            area: 90,
+            bedrooms: 2,
+            bathrooms: 1,
+            description: 'Completely renovated apartment in the main street of Kyiv with modern finishes.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Central Location', 'New Renovation', 'Built-in Kitchen'],
+            coordinates: { lat: 50.4469, lng: 30.5261 }
+          },
+          {
+            id: 'sale-apartment-kyiv-4',
+            title: 'Two-Level Apartment on Khreshchatyk',
+            address: '94 Khreshchatyk St, Kyiv',
+            street: 'Khreshchatyk St',
+            price: 420000,
+            area: 160,
+            bedrooms: 4,
+            bathrooms: 2,
+            description: 'Unique two-level apartment with premium finishes and excellent location.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Two Levels', 'Premium Finishes', 'Central Heating'],
+            coordinates: { lat: 50.4479, lng: 30.5252 }
+          },
+          {
+            id: 'sale-apartment-kyiv-5',
+            title: 'Studio Apartment on Khreshchatyk',
+            address: '76 Khreshchatyk St, Kyiv',
+            street: 'Khreshchatyk St',
+            price: 150000,
+            area: 45,
+            bedrooms: 0,
+            bathrooms: 1,
+            description: 'Compact studio apartment in central Kyiv, perfect for investment.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Central Location', 'Investment Opportunity', 'Low Maintenance'],
+            coordinates: { lat: 50.4488, lng: 30.5248 }
+          },
+        
+          // Lesya Ukrainka Blvd - 8 listings
+          {
+            id: 'sale-apartment-kyiv-6',
+            title: 'Modern Penthouse in Pechersk',
+            address: '78 Lesya Ukrainka Blvd, Kyiv',
+            street: 'Lesya Ukrainka Blvd',
+            price: 420000,
+            area: 150,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Stunning penthouse in Pechersk district with panoramic views and terrace.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Panoramic View', 'Terrace', 'Smart Home', 'Parking'],
+            coordinates: { lat: 50.4265, lng: 30.5365 }
+          },
+          {
+            id: 'sale-apartment-kyiv-7',
+            title: 'Elegant Apartment in Pechersk',
+            address: '55 Lesya Ukrainka Blvd, Kyiv',
+            street: 'Lesya Ukrainka Blvd',
+            price: 310000,
+            area: 110,
+            bedrooms: 2,
+            bathrooms: 2,
+            description: 'Elegant apartment with quality finishes in one of the best areas of Kyiv.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Quality Finishes', 'Security System', 'Underground Parking'],
+            coordinates: { lat: 50.4258, lng: 30.5370 }
+          },
+          {
+            id: 'sale-apartment-kyiv-8',
+            title: 'Premium Class Apartment',
+            address: '92 Lesya Ukrainka Blvd, Kyiv',
+            street: 'Lesya Ukrainka Blvd',
+            price: 385000,
+            area: 125,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Premium class apartment in a modern building with all amenities.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Premium Class', 'Modern Building', 'All Amenities'],
+            coordinates: { lat: 50.4271, lng: 30.5360 }
+          },
+          {
+            id: 'sale-apartment-kyiv-9',
+            title: 'Business Class Apartment',
+            address: '64 Lesya Ukrainka Blvd, Kyiv',
+            street: 'Lesya Ukrainka Blvd',
+            price: 340000,
+            area: 115,
+            bedrooms: 2,
+            bathrooms: 1,
+            description: 'Business class apartment in Pechersk district with modern design.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Business Class', 'Modern Design', 'Quiet Area'],
+            coordinates: { lat: 50.4262, lng: 30.5375 }
+          },
+          {
+            id: 'sale-apartment-kyiv-10',
+            title: 'Cozy Apartment with Park View',
+            address: '47 Lesya Ukrainka Blvd, Kyiv',
+            street: 'Lesya Ukrainka Blvd',
+            price: 230000,
+            area: 80,
+            bedrooms: 1,
+            bathrooms: 1,
+            description: 'Cozy apartment with park view in a quiet part of Lesya Ukrainka Boulevard.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Park View', 'Quiet Location', 'Balcony'],
+            coordinates: { lat: 50.4250, lng: 30.5380 }
+          },
+          {
+            id: 'sale-apartment-kyiv-11',
+            title: 'Luxury Apartment with Terrace',
+            address: '83 Lesya Ukrainka Blvd, Kyiv',
+            street: 'Lesya Ukrainka Blvd',
+            price: 450000,
+            area: 160,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Luxury apartment with spacious terrace and panoramic city views.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Terrace', 'Panoramic Views', 'Premium Finishes'],
+            coordinates: { lat: 50.4268, lng: 30.5362 }
+          },
+          {
+            id: 'sale-apartment-kyiv-12',
+            title: 'Compact Studio in Pechersk',
+            address: '41 Lesya Ukrainka Blvd, Kyiv',
+            street: 'Lesya Ukrainka Blvd',
+            price: 95000,
+            area: 35,
+            bedrooms: 0,
+            bathrooms: 1,
+            description: 'Compact studio apartment in Pechersk district, great for investment.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Investment Opportunity', 'Low Maintenance', 'Public Transport'],
+            coordinates: { lat: 50.4245, lng: 30.5385 }
+          },
+          {
+            id: 'sale-apartment-kyiv-13',
+            title: 'Family Apartment in Pechersk',
+            address: '71 Lesya Ukrainka Blvd, Kyiv',
+            street: 'Lesya Ukrainka Blvd',
+            price: 320000,
+            area: 130,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Spacious family apartment with comfortable layout in Pechersk district.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Family Friendly', 'Schools Nearby', 'Playground'],
+            coordinates: { lat: 50.4264, lng: 30.5372 }
+          },
+        
+          // Sagaidachnogo St - 7 listings
+          {
+            id: 'sale-apartment-kyiv-14',
+            title: 'Spacious Apartment in Podil',
+            address: '45 Sagaidachnogo St, Kyiv',
+            street: 'Sagaidachnogo St',
+            price: 260000,
+            area: 95,
+            bedrooms: 2,
+            bathrooms: 1,
+            description: 'Charming spacious apartment in historic Podil district.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Historic Building', 'High Ceilings', 'Renovated'],
+            coordinates: { lat: 50.4627, lng: 30.5165 }
+          },
+          {
+            id: 'sale-apartment-kyiv-15',
+            title: 'Loft Apartment in Podil',
+            address: '32 Sagaidachnogo St, Kyiv',
+            street: 'Sagaidachnogo St',
+            price: 240000,
+            area: 85,
+            bedrooms: 1,
+            bathrooms: 1,
+            description: 'Modern loft-style apartment in a renovated historic building.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Loft Style', 'Exposed Brick', 'Designer Interior'],
+            coordinates: { lat: 50.4632, lng: 30.5160 }
+          },
+          {
+            id: 'sale-apartment-kyiv-16',
+            title: 'Stylish Flat in Podil',
+            address: '57 Sagaidachnogo St, Kyiv',
+            street: 'Sagaidachnogo St',
+            price: 210000,
+            area: 75,
+            bedrooms: 1,
+            bathrooms: 1,
+            description: 'Stylish flat in the heart of Podil with views of old Kyiv.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['City View', 'Central Location', 'Historic Area'],
+            coordinates: { lat: 50.4622, lng: 30.5170 }
+          },
+          {
+            id: 'sale-apartment-kyiv-17',
+            title: 'Renovated Apartment in Historic Building',
+            address: '28 Sagaidachnogo St, Kyiv',
+            street: 'Sagaidachnogo St',
+            price: 275000,
+            area: 100,
+            bedrooms: 2,
+            bathrooms: 1,
+            description: 'Fully renovated apartment in a historic building with authentic elements.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Historic Building', 'Full Renovation', 'Authentic Elements'],
+            coordinates: { lat: 50.4635, lng: 30.5157 }
+          },
+          {
+            id: 'sale-apartment-kyiv-18',
+            title: 'Cozy Studio in Podil',
+            address: '19 Sagaidachnogo St, Kyiv',
+            street: 'Sagaidachnogo St',
+            price: 130000,
+            area: 40,
+            bedrooms: 0,
+            bathrooms: 1,
+            description: 'Cozy studio apartment in the bustling area of Podil, perfect for city living.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['City Living', 'Central Location', 'Public Transport'],
+            coordinates: { lat: 50.4640, lng: 30.5152 }
+          },
+          {
+            id: 'sale-apartment-kyiv-19',
+            title: 'Two-Level Apartment in Podil',
+            address: '63 Sagaidachnogo St, Kyiv',
+            street: 'Sagaidachnogo St',
+            price: 320000,
+            area: 120,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Unique two-level apartment in a historic building in Podil.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Two Levels', 'Historic Building', 'Unique Layout'],
+            coordinates: { lat: 50.4619, lng: 30.5173 }
+          },
+          {
+            id: 'sale-apartment-kyiv-20',
+            title: 'Premium Apartment with River View',
+            address: '72 Sagaidachnogo St, Kyiv',
+            street: 'Sagaidachnogo St',
+            price: 370000,
+            area: 130,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Premium apartment with beautiful views of the Dnipro River.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['River View', 'Premium Finishes', 'Spacious Layout'],
+            coordinates: { lat: 50.4615, lng: 30.5178 }
+          },
+        
+          // Volodymyrska St - 6 listings
+          {
+            id: 'sale-apartment-kyiv-21',
+            title: 'Elite Apartment near Golden Gate',
+            address: '25 Volodymyrska St, Kyiv',
+            street: 'Volodymyrska St',
+            price: 390000,
+            area: 140,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Elite apartment near the Golden Gate in a prime location of old Kyiv.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Elite Location', 'Historic Area', 'Premium Finishes'],
+            coordinates: { lat: 50.4456, lng: 30.5108 }
+          },
+          {
+            id: 'sale-apartment-kyiv-22',
+            title: 'Classic Apartment in City Center',
+            address: '42 Volodymyrska St, Kyiv',
+            street: 'Volodymyrska St',
+            price: 310000,
+            area: 110,
+            bedrooms: 2,
+            bathrooms: 2,
+            description: 'Classic apartment with high ceilings in the historic center of Kyiv.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['High Ceilings', 'Historic Building', 'Central Location'],
+            coordinates: { lat: 50.4461, lng: 30.5103 }
+          },
+          {
+            id: 'sale-apartment-kyiv-23',
+            title: 'Renovated Apartment near University',
+            address: '58 Volodymyrska St, Kyiv',
+            street: 'Volodymyrska St',
+            price: 280000,
+            area: 100,
+            bedrooms: 2,
+            bathrooms: 1,
+            description: 'Fully renovated apartment near Taras Shevchenko National University.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Near University', 'Full Renovation', 'Balcony'],
+            coordinates: { lat: 50.4467, lng: 30.5098 }
+          },
+          {
+            id: 'sale-apartment-kyiv-24',
+            title: 'Premium Loft in Historic Building',
+            address: '33 Volodymyrska St, Kyiv',
+            street: 'Volodymyrska St',
+            price: 340000,
+            area: 115,
+            bedrooms: 2,
+            bathrooms: 2,
+            description: 'Premium loft-style apartment in a building with historical significance.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Loft Style', 'Historical Building', 'Premium Finishes'],
+            coordinates: { lat: 50.4458, lng: 30.5106 }
+          },
+          {
+            id: 'sale-apartment-kyiv-25',
+            title: 'Spacious Apartment with Park View',
+            address: '71 Volodymyrska St, Kyiv',
+            street: 'Volodymyrska St',
+            price: 295000,
+            area: 105,
+            bedrooms: 2,
+            bathrooms: 1,
+            description: 'Spacious apartment with views of the botanical garden of Kyiv University.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Park View', 'Spacious', 'Quiet Area'],
+            coordinates: { lat: 50.4472, lng: 30.5092 }
+          },
+          {
+            id: 'sale-apartment-kyiv-26',
+            title: 'Studio Apartment in City Center',
+            address: '15 Volodymyrska St, Kyiv',
+            street: 'Volodymyrska St',
+            price: 145000,
+            area: 42,
+            bedrooms: 0,
+            bathrooms: 1,
+            description: 'Stylish studio apartment in the heart of Kyiv with all amenities nearby.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['City Center', 'All Amenities', 'Investment Opportunity'],
+            coordinates: { lat: 50.4451, lng: 30.5113 }
+          },
+        
+          // Baseina St - 4 listings
+          {
+            id: 'sale-apartment-kyiv-27',
+            title: 'Luxury Apartment near Arena City',
+            address: '12 Baseina St, Kyiv',
+            street: 'Baseina St',
+            price: 430000,
+            area: 145,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Luxury apartment near Arena City shopping and entertainment complex.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Luxury Finishes', 'Entertainment Area', 'Security'],
+            coordinates: { lat: 50.4392, lng: 30.5210 }
+          },
+          {
+            id: 'sale-apartment-kyiv-28',
+            title: 'Modern Apartment in Business District',
+            address: '24 Baseina St, Kyiv',
+            street: 'Baseina St',
+            price: 320000,
+            area: 110,
+            bedrooms: 2,
+            bathrooms: 2,
+            description: 'Modern apartment in the business district with excellent infrastructure.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Business District', 'Modern Building', 'Infrastructure'],
+            coordinates: { lat: 50.4396, lng: 30.5207 }
+          },
+          {
+            id: 'sale-apartment-kyiv-29',
+            title: 'Premium Apartment with City View',
+            address: '33 Baseina St, Kyiv',
+            street: 'Baseina St',
+            price: 370000,
+            area: 130,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Premium apartment with stunning views of Kyiv city center.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['City View', 'Premium Class', 'Central Heating'],
+            coordinates: { lat: 50.4399, lng: 30.5203 }
+          },
+          {
+            id: 'sale-apartment-kyiv-30',
+            title: 'Stylish Studio near Maidan',
+            address: '8 Baseina St, Kyiv',
+            street: 'Baseina St',
+            price: 160000,
+            area: 48,
+            bedrooms: 0,
+            bathrooms: 1,
+            description: 'Stylish studio apartment near Maidan Nezalezhnosti with modern renovation.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Near Maidan', 'Modern Renovation', 'Central Location'],
+            coordinates: { lat: 50.4390, lng: 30.5213 }
+          },
+        
+          // Velyka Vasylkivska St - 10 listings
+          {
+            id: 'sale-apartment-kyiv-31',
+            title: 'Luxury Apartment in Premium Building',
+            address: '72 Velyka Vasylkivska St, Kyiv',
+            street: 'Velyka Vasylkivska St',
+            price: 410000,
+            area: 140,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Luxury apartment in a premium building with high-end finishes.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Premium Building', 'High-end Finishes', 'Security'],
+            coordinates: { lat: 50.4336, lng: 30.5162 }
+          },
+          {
+            id: 'sale-apartment-kyiv-32',
+            title: 'Spacious Apartment near Ocean Plaza',
+            address: '104 Velyka Vasylkivska St, Kyiv',
+            street: 'Velyka Vasylkivska St',
+            price: 290000,
+            area: 105,
+            bedrooms: 2,
+            bathrooms: 1,
+            description: 'Spacious apartment near Ocean Plaza shopping mall with excellent layout.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Near Shopping Mall', 'Excellent Layout', 'Balcony'],
+            coordinates: { lat: 50.4310, lng: 30.5172 }
+          },
+          {
+            id: 'sale-apartment-kyiv-33',
+            title: 'Modern Studio in Holosiivskyi District',
+            address: '132 Velyka Vasylkivska St, Kyiv',
+            street: 'Velyka Vasylkivska St',
+            price: 125000,
+            area: 38,
+            bedrooms: 0,
+            bathrooms: 1,
+            description: 'Modern studio apartment in Holosiivskyi district with recent renovation.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Modern', 'Recent Renovation', 'Public Transport'],
+            coordinates: { lat: 50.4280, lng: 30.5185 }
+          },
+          {
+            id: 'sale-apartment-kyiv-34',
+            title: 'Business Class Apartment',
+            address: '58 Velyka Vasylkivska St, Kyiv',
+            street: 'Velyka Vasylkivska St',
+            price: 350000,
+            area: 125,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Business class apartment in a well-maintained building with security.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Business Class', 'Security', 'Well-maintained Building'],
+            coordinates: { lat: 50.4345, lng: 30.5157 }
+          },
+          {
+            id: 'sale-apartment-kyiv-35',
+            title: 'Cozy Apartment near Metro',
+            address: '96 Velyka Vasylkivska St, Kyiv',
+            street: 'Velyka Vasylkivska St',
+            price: 210000,
+            area: 75,
+            bedrooms: 1,
+            bathrooms: 1,
+            description: 'Cozy apartment near Olimpiiska metro station with convenient location.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Near Metro', 'Convenient Location', 'Cozy'],
+            coordinates: { lat: 50.4315, lng: 30.5168 }
+          },
+          {
+            id: 'sale-apartment-kyiv-36',
+            title: 'Premium Apartment with Terrace',
+            address: '41 Velyka Vasylkivska St, Kyiv',
+            street: 'Velyka Vasylkivska St',
+            price: 385000,
+            area: 135,
+            bedrooms: 3,
+            bathrooms: 2,
+            description: 'Premium apartment with a spacious terrace and high-quality renovation.',
+            images: ['sale-apt-kyiv3.png', 'sale-apt-kyiv3-bath.png', 'sale-apt-kyiv3-bedroom.png'],
+            features: ['Terrace', 'High-quality Renovation', 'Premium Class'],
+            coordinates: { lat: 50.4352, lng: 30.5152 }
+          },
+          {
+            id: 'sale-apartment-kyiv-37',
+            title: 'Family Apartment with Park View',
+            address: '116 Velyka Vasylkivska St, Kyiv',
+            street: 'Velyka Vasylkivska St',
+            price: 275000,
+            area: 95,
+            bedrooms: 2,
+            bathrooms: 1,
+            description: 'Family-friendly apartment with views of a nearby park in a quiet area.',
+            images: ['sale-apt-kyiv1.png', 'sale-apt-kyiv1-bath.png', 'sale-apt-kyiv1-bedroom.png'],
+            features: ['Park View', 'Family Friendly', 'Quiet Area'],
+            coordinates: { lat: 50.4300, lng: 30.5178 }
+          },
+          {
+            id: 'sale-apartment-kyiv-38',
+            title: 'Luxury Penthouse in Central Kyiv',
+            address: '63 Velyka Vasylkivska St, Kyiv',
+            street: 'Velyka Vasylkivska St',
+            price: 520000,
+            area: 180,
+            bedrooms: 4,
+            bathrooms: 3,
+            description: 'Luxury penthouse in central Kyiv with panoramic city views and premium amenities.',
+            images: ['sale-apt-kyiv2.png', 'sale-apt-kyiv2-bath.png', 'sale-apt-kyiv2-bedroom.png'],
+            features: ['Penthouse', 'Panoramic Views', 'Premium Amenities'],
+            coordinates: { lat: 50.4342, lng: 30.5160 }
+          },
+
       ],
       odessa: [
         {
@@ -630,7 +1063,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 2,
           description: 'Luxurious apartment with sea view in historic building.',
-          images: ['sale-apt-odessa1.jpg', 'sale-apt-odessa1-interior.jpg'],
+          images: [],
           features: ['Sea View', 'Historic Building', 'Balcony', 'Renovated'],
           coordinates: { lat: 46.4872, lng: 30.7415 }
         },
@@ -644,7 +1077,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Modern apartment in new building near Arcadia beach.',
-          images: ['sale-apt-odessa2.jpg', 'sale-apt-odessa2-interior.jpg'],
+          images: [],
           features: ['Near Beach', 'Pool Access', 'Gym', 'Parking'],
           coordinates: { lat: 46.4315, lng: 30.7645 }
         }
@@ -660,7 +1093,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Unique apartment in historic building on Rynok Square.',
-          images: ['sale-apt-lviv1.jpg', 'sale-apt-lviv1-interior.jpg'],
+          images: [],
           features: ['Historic Building', 'City View', 'High Ceilings'],
           coordinates: { lat: 49.8419, lng: 24.0318 }
         },
@@ -674,7 +1107,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Modern apartment in new building close to city center.',
-          images: ['sale-apt-lviv2.jpg', 'sale-apt-lviv2-interior.jpg'],
+          images: [],
           features: ['New Building', 'Balcony', 'Parking', 'Elevator'],
           coordinates: { lat: 49.8385, lng: 24.0168 }
         }
@@ -690,7 +1123,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Spacious apartment in the center of Kharkiv with good transport connections.',
-          images: ['sale-apt-kharkiv1.jpg', 'sale-apt-kharkiv1-interior.jpg'],
+          images: [],
           features: ['City Center', 'Renovated', 'Balcony'],
           coordinates: { lat: 49.9947, lng: 36.2312 }
         },
@@ -704,7 +1137,7 @@ export const propertyData: PropertyDatabase = {
           bedrooms: 2,
           bathrooms: 1,
           description: 'Modern apartment in new residential complex with all amenities.',
-          images: ['sale-apt-kharkiv2.jpg', 'sale-apt-kharkiv2-interior.jpg'],
+          images: [],
           features: ['New Building', 'Parking', 'Playground', 'Security'],
           coordinates: { lat: 49.9895, lng: 36.2508 }
         }
@@ -713,18 +1146,53 @@ export const propertyData: PropertyDatabase = {
   }
 };
 
-// Функція для отримання відфільтрованих елементів
+
+// Оновлена функція для отримання відфільтрованих елементів
 export function getFilteredProperties(
   listingType: ListingType,
   propertyType: PropertyType,
   city: City,
-  limit?: number
-): PropertyItem[] {
+  options?: {
+    page?: number,
+    itemsPerPage?: number,
+    address?: string | null
+  }
+): { items: PropertyItem[], totalItems: number } {
   try {
-    const filteredItems = propertyData[listingType][propertyType][city] || [];
-    return limit ? filteredItems.slice(0, limit) : filteredItems;
+    // Отримуємо базові відфільтровані елементи
+    let filteredItems = propertyData[listingType][propertyType][city] || [];
+    
+    // Додаткова фільтрація за адресою, якщо вона є
+    if (options?.address) {
+      filteredItems = filteredItems.filter(item => 
+        item.address.toLowerCase().includes(options.address!.toLowerCase()) || 
+        item.street.toLowerCase() === options.address!.toLowerCase()
+      );
+    }
+    
+    // Загальна кількість елементів, що відповідають фільтрам
+    const totalItems = filteredItems.length;
+    
+    // Якщо запитана пагінація, повертаємо відповідну частину даних
+    if (options?.page !== undefined && options?.itemsPerPage) {
+      const startIndex = (options.page - 1) * options.itemsPerPage;
+      const endIndex = startIndex + options.itemsPerPage;
+      return {
+        items: filteredItems.slice(startIndex, endIndex),
+        totalItems
+      };
+    }
+    
+    // За замовчуванням повертаємо всі елементи
+    return {
+      items: filteredItems,
+      totalItems
+    };
   } catch (error) {
     console.error('Error filtering properties:', error);
-    return [];
+    return {
+      items: [],
+      totalItems: 0
+    };
   }
 }

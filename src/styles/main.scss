@@ -334,10 +334,10 @@ body {
   @media (max-width: 768px) {
     flex-direction: column;
   }
-}
 
-// Ліва колонка
-.property-column {
+
+ // Ліва колонка
+ .property-column {
   flex: 0 0 45%;
   background-color: $secondary-color;
   // border-right: 3px solid $primary-color;
@@ -352,7 +352,7 @@ body {
 
   @media (max-width: 500px) {
     padding: 20px  20px;
-}
+ }
   
   &__header {
     margin-bottom: 20px;
@@ -369,430 +369,595 @@ body {
   }
 }
 
-.search-container {
-  position: relative;
-  flex-grow: 1;
-  min-width: 200px;
-  @media (max-width: 768px) {
-    max-width: 500px
-   }
-  
-  .search-placeholder {
-    width: 100%;
-    min-height: 46px;
-    padding: 10px 20px;
-    padding-right: 60px; // Місце для іконки
-    border-radius: 20px;
-    border: none;
-    font-size: 13px;
-    font-family: $tertiary-font;
-    font-weight: 500;
-    
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba($primary-color, 0.3);
+  .search-container {
+    position: relative;
+    flex-grow: 1;
+    min-width: 200px;
+    @media (max-width: 768px) {
+      max-width: 500px
     }
-  }
-
-  .search-dropdown {
-    position: absolute;
-    font-family: $tertiary-font;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-height: 250px;
-    overflow-y: auto;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-    margin-top: 5px;
     
-    &__searching {
-      padding: 15px;
-      text-align: center;
-      color: #888;
-      font-style: italic;
+    .search-placeholder {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 20px;
+      padding-right: 60px; // Місце для іконки
+      border-radius: 20px;
+      border: none;
+      font-size: 13px;
       font-family: $tertiary-font;
       font-weight: 500;
+      
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.3);
+      }
     }
-    
-    &__empty {
-      padding: 15px;
-      text-align: center;
-      color: #888;
-    }
-    
-    &__item {
-      padding: 12px 15px;
+
+    .search-dropdown {
+      position: absolute;
       font-family: $tertiary-font;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: 250px;
+      overflow-y: auto;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      margin-top: 5px;
       
-      &:hover {
-        background-color: rgba($secondary-color, 0.2);
-      }
-      
-      &:not(:last-child) {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-      
-      &--street {
+      &__searching {
+        padding: 15px;
+        text-align: center;
+        color: #888;
+        font-style: italic;
+        font-family: $tertiary-font;
         font-weight: 500;
       }
-    }
-    
-    &__back {
-      padding: 10px 15px;
-      background-color: rgba($secondary-color, 0.1);
-      cursor: pointer;
-      font-weight: 500;
-      color: $primary-color;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       
-      &:hover {
-        background-color: rgba($secondary-color, 0.2);
+      &__empty {
+        padding: 15px;
+        text-align: center;
+        color: #888;
       }
-    }
-  }
-  
-  .search-button {
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    transform: translateY(-50%);
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: $primary-color;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    
-    &:hover {
-      background-color: color.adjust($primary-color, $lightness: -10%);
-    }
-    
-    .search-icon {
-      color: white;
-      width: 15px;
-      height: 15px;
-    }
-
-    &:disabled {
-      background-color: color.adjust($primary-color, $lightness: 7%);
-      cursor: not-allowed;
       
-      &:hover {
-        background-color: #ccc;
+      &__item {
+        padding: 12px 15px;
+        font-family: $tertiary-font;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        
+        &:hover {
+          background-color: rgba($secondary-color, 0.2);
+        }
+        
+        &:not(:last-child) {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        &--street {
+          font-weight: 500;
+        }
       }
-  }
-}
-}
-
-
-.filter-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 8px;
-  border-radius: 50px;
-  border: 1px solid $text-color;
-  position: relative; // Важливо для позиціонування псевдоелемента
-  
-  // Псевдоелемент для анімованого фону
-  &::before {
-    content: '';
-    position: absolute;
-    width: 70px; // Налаштуйте розмір відповідно до розміру кнопки
-    height: 40px; // Налаштуйте розмір відповідно до розміру кнопки
-    border-radius: 20px;
-    background-color: $primary-color;
-    transition: transform 0.5s ease;
-    z-index: 1;
-    left: 8px; // Відступ зліва для початкової позиції
-    
-    @media (max-width: 768px) {
-      width: 60px; // Менший розмір для мобільних
-      height: 33px;
-    }
-  }
-  
-  // Стани для активних кнопок
-  &.house-active::before {
-    transform: translateX(-5px);
-  }
-  
-  &.apartment-active::before {
-    transform: translateX(55px);
-    width: 90px;
-    
-    @media (max-width: 768px) {
-      transform: translateX(48px); // Менша відстань для мобільних
-      width: 70px;
-    }
-  }
-
-  &__button {
-    padding: 10px 10px;
-    border-radius: 20px;
-    transition: color 0.5s ease;
-    background-color: transparent; // Прозорий фон
-    border: none;
-    position: relative; // Для правильного стекінгу
-    z-index: 2; // Вище псевдоелемента
-    
-    @media (max-width: 768px) {
-      padding: 8px 10px;
-      font-size: 10px;
-    }
-    
-    &--active {
-      color: $light-color; // Колір тексту для активної кнопки
-    }
-    
-    &--disabled {
-      color: $text-color; // Колір тексту для неактивної кнопки
       
-      &:hover {
+      &__back {
+        padding: 10px 15px;
+        background-color: rgba($secondary-color, 0.1);
+        cursor: pointer;
+        font-weight: 500;
         color: $primary-color;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        
+        &:hover {
+          background-color: rgba($secondary-color, 0.2);
+        }
+      }
+    }
+    
+    .search-button {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      transform: translateY(-50%);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: $primary-color;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: color.adjust($primary-color, $lightness: -10%);
+      }
+      
+      .search-icon {
+        color: white;
+        width: 15px;
+        height: 15px;
+      }
+
+      &:disabled {
+        background-color: color.adjust($primary-color, $lightness: 7%);
+        cursor: not-allowed;
+        
+        &:hover {
+          background-color: #ccc;
+        }
+    }
+  }
+  }
+
+
+  .filter-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 8px;
+    border-radius: 50px;
+    border: 1px solid $text-color;
+    position: relative; // Важливо для позиціонування псевдоелемента
+    
+    // Псевдоелемент для анімованого фону
+    &::before {
+      content: '';
+      position: absolute;
+      width: 70px; // Налаштуйте розмір відповідно до розміру кнопки
+      height: 40px; // Налаштуйте розмір відповідно до розміру кнопки
+      border-radius: 20px;
+      background-color: $primary-color;
+      transition: transform 0.5s ease;
+      z-index: 1;
+      left: 8px; // Відступ зліва для початкової позиції
+      
+      @media (max-width: 768px) {
+        width: 60px; // Менший розмір для мобільних
+        height: 33px;
+      }
+    }
+    
+    // Стани для активних кнопок
+    &.house-active::before {
+      transform: translateX(-5px);
+    }
+    
+    &.apartment-active::before {
+      transform: translateX(55px);
+      width: 90px;
+      
+      @media (max-width: 768px) {
+        transform: translateX(48px); // Менша відстань для мобільних
+        width: 70px;
+      }
+    }
+
+    &__button {
+      padding: 10px 10px;
+      border-radius: 20px;
+      transition: color 0.5s ease;
+      background-color: transparent; // Прозорий фон
+      border: none;
+      position: relative; // Для правильного стекінгу
+      z-index: 2; // Вище псевдоелемента
+      
+      @media (max-width: 768px) {
+        padding: 8px 10px;
+        font-size: 10px;
+      }
+      
+      &--active {
+        color: $light-color; // Колір тексту для активної кнопки
+      }
+      
+      &--disabled {
+        color: $text-color; // Колір тексту для неактивної кнопки
+        
+        &:hover {
+          color: $primary-color;
+        }
       }
     }
   }
-}
 
-.property-count {
-  margin: -10px 20px;
-  padding: 10px 0;
-  
-  &__text {
-    font-size: 13px;
-    font-family: $tertiary-font;
-    font-weight: 300;
-    color: $text-color;
-  }
-  
-  &__number {
-    font-weight: 700;
-  }
-}
-
-.property-list {
-  margin-top: 20px;
-}
-
-.property-card {
-  position: relative;
-  width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  background-color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  }
-  
-  &__image {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
+  .property-count {
+    margin: -10px 20px;
+    padding: 10px 0;
     
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.5s ease;
-    }
-    
-    &:hover img {
-      transform: scale(1.05);
-    }
-  }
-  
-  &__expand {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    z-index: 5;
-    
-    svg {
-      width: 20px;
-      height: 20px;
-      color: $primary-color;
-    }
-    
-    &:hover {
-      background-color: white;
-    }
-  }
-  
-  &__slide-indicator {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 5px 10px;
-    border-radius: 12px;
-    z-index: 5;
-  }
-  
-  &__nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    z-index: 5;
-    
-    svg {
-      width: 16px;
-      height: 16px;
+    &__text {
+      font-size: 13px;
+      font-family: $tertiary-font;
+      font-weight: 300;
       color: $text-color;
     }
     
+    &__number {
+      font-weight: 700;
+    }
+  }
+
+  .property-list {
+    margin-top: 20px;
+
+
+  .property-card {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
     &:hover {
-      background-color: $primary-color;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    &__placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background-color: #f0f0f0;
+    }
+    
+    &__placeholder-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #888;
+      font-size: 14px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+    
+    &__image {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
       
-      svg {
-        color: white;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.5s ease;
+      }
+      
+      &:hover img {
+        transform: scale(1.05);
       }
     }
     
-    &--prev {
-      left: 15px;
-    }
-    
-    &--next {
+    &__expand {
+      position: absolute;
+      top: 15px;
       right: 15px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 5;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+        color: $primary-color;
+      }
+      
+      &:hover {
+        background-color: white;
+      }
     }
-  }
-  
-  &__info {
-    padding: 20px;
-  }
-  
-  &__title {
-    font-size: 24px;
-    font-weight: 500;
-    font-family: $secondary-font;
-    margin-top: 10px;
-    color: $text-color;
-  }
-  
-  &__address {
-    font-size: 16px;
-    font-family: $secondary-font;
-    color: rgba($text-color, 0.7);
-    // margin: 0 0 15px;
-    margin-top: 0px;
-  }
-
-  &__description {
-    font-size: 18px;
-    font-weight: 400;
-    font-family: $tertiary-font;
-    color: rgba($text-color, 1);
-    margin: 10px 0 15px ;
-  }
-  
-  &__price {
-    font-size: 24px;
-    font-weight: 600;
-    font-family: $secondary-font;
-    color: $text-color;
-  }
-  
-  &__empty {
-    text-align: center;
-    padding: 40px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     
-    p {
-      font-size: 18px;
-      color: rgba($text-color, 0.7);
+    &__slide-indicator {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 12px;
+      z-index: 5;
     }
-  }
-}
-
-// Додаткові медіа-запити для адаптивності
-@media (max-width: 768px) {
-  .property-card {
-    &__image {
-      height: 240px;
+    
+    &__nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 5;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+        color: $text-color;
+      }
+      
+      &:hover {
+        background-color: $primary-color;
+        
+        svg {
+          color: white;
+        }
+      }
+      
+      &--prev {
+        left: 15px;
+      }
+      
+      &--next {
+        right: 15px;
+      }
+    }
+    
+    &__info {
+      padding: 20px;
     }
     
     &__title {
-      font-size: 20px;
+      font-size: 24px;
+      font-weight: 500;
+      font-family: $secondary-font;
+      margin-top: 10px;
+      color: $text-color;
     }
     
     &__address {
-      font-size: 14px;
+      font-size: 16px;
+      font-family: $secondary-font;
+      color: rgba($text-color, 0.7);
+      // margin: 0 0 15px;
+      margin-top: 0px;
+    }
+
+    &__description {
+      font-size: 18px;
+      font-weight: 400;
+      font-family: $tertiary-font;
+      color: rgba($text-color, 1);
+      margin: 10px 0 15px ;
     }
     
     &__price {
       font-size: 24px;
+      font-weight: 600;
+      font-family: $secondary-font;
+      color: $text-color;
+    }
+    
+    &__empty {
+      text-align: center;
+      padding: 40px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      
+      p {
+        font-size: 18px;
+        color: rgba($text-color, 0.7);
+      }
     }
   }
-}
 
 
-
-
-
-// Права колонка з картою
-.map-column {
-  flex: 0 0 55%;
-  background-color: #f5f5f5;
-  
-  @media (max-width: 768px) {
-    display: none;
   }
+
+
+
+
+
+  .paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    
+    &__numbers {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      scrollbar-width: none; // Для Firefox
+      -ms-overflow-style: none; // Для IE і Edge
+      
+      &::-webkit-scrollbar {
+        display: none; // Для Chrome, Safari і Opera
+      }
+    }
+    
+    &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 40px;
+      height: 40px;
+      margin: 0 5px;
+      border: none;
+      border-radius: 50%;
+      background-color: white;
+      color: $text-color;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      
+      &:hover:not(:disabled) {
+        background-color: rgba($primary-color, 0.2);
+      }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      
+      &--active {
+        background-color: $primary-color;
+        color: white;
+        
+        &:hover {
+          background-color: color.adjust($primary-color, $lightness: -10%);
+        }
+      }
+      
+      &--prev, &--next {
+        padding: 0;
+        width: 40px;
+        
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      
+      // Адаптивність для кнопок
+      @media (max-width: 768px) {
+        min-width: 36px;
+        height: 36px;
+        margin: 0 3px;
+        
+        &--prev, &--next {
+          width: 36px;
+          
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+      
+      // Ще менші на мобільних
+      @media (max-width: 480px) {
+        min-width: 32px;
+        height: 32px;
+        margin: 0 2px;
+        font-size: 0.9rem;
+        
+        &--prev, &--next {
+          width: 32px;
+          
+          svg {
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+    
+    &__ellipsis {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 40px;
+      height: 40px;
+      margin: 0 5px;
+      color: $text-color;
+      flex-shrink: 0;
+      
+      @media (max-width: 768px) {
+        min-width: 36px;
+        height: 36px;
+        margin: 0 3px;
+      }
+      
+      @media (max-width: 480px) {
+        min-width: 32px;
+        height: 32px;
+        margin: 0 2px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    // Адаптивність для пагінатора на маленьких екранах
+    @media (max-width: 480px) {
+      .paginator__numbers {
+        max-width: calc(100% - 80px); // Щоб забезпечити місце для стрілок
+      }
+      
+      // Опційно: на дуже маленьких екранах можна приховати деякі сторінки
+      &__button--number:not(.paginator__button--active) {
+        display: none;
+        
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-last-child(1),
+        &:nth-last-child(2) {
+          display: flex; // Показуємо тільки першу, останню, та сусідні до активної
+        }
+      }
+    }
+  }
+
+  // Додаткові медіа-запити для адаптивності
+  @media (max-width: 768px) {
+    .property-card {
+      &__image {
+        height: 240px;
+      }
+      
+      &__title {
+        font-size: 20px;
+      }
+      
+      &__address {
+        font-size: 14px;
+      }
+      
+      &__price {
+        font-size: 24px;
+      }
+    }
+  }
+
+  // Права колонка з картою
+  .map-column {
+    flex: 0 0 55%;
+    background-color: #f5f5f5;
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+
+  .map-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #999;
+    font-size: 24px;
+  }
+
 }
-
-
-.map-placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  color: #999;
-  font-size: 24px;
-}
-
 
 
 @media (max-width: 768px) {

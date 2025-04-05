@@ -1,21 +1,27 @@
+// components/property/PropertyListComponent.ts
 import { StateManager } from '../../services/StateManager';
 import { ListingType, PropertyType, City, PropertyItem } from '../../models/types';
 import { getFilteredProperties } from '../../models/propertyData';
 import { MapComponent } from '../map/MapComponent';
+import { Paginator } from '../paginator/Paginator';
 
 export class PropertyListComponent {
   private container: HTMLElement | null = null;
   private items: PropertyItem[] = [];
-  private currentImageIndices: Map<string, number> = new Map(); // Зберігаємо індекс поточного зображення для кожного айтема
-  private maxItemsToShow: number = 10; // Максимальна кількість елементів для відображення
+  private currentImageIndices: Map<string, number> = new Map();
   private isScrolling: boolean = false;
   private scrollTimeout: number | null = null;
   private hoverTimeout: number | null = null;
   private scrollDelay: number = 200; // Затримка в мс після закінчення скролу
   private lastHoveredElement: HTMLElement | null = null;
+  private paginator: Paginator | null = null;
+  private currentPage: number = 1;
+  private itemsPerPage: number = 10;
+  private totalItems: number = 0;
   
   constructor(
     containerSelector: string,
+    paginatorSelector: string,
     private listingTypeState: StateManager<ListingType>,
     private propertyTypeState: StateManager<PropertyType>,
     private cityState: StateManager<City>,
@@ -41,10 +47,18 @@ export class PropertyListComponent {
     }
     
     // Підписуємося на зміни станів
-    this.listingTypeState.subscribe(this.updatePropertyList.bind(this));
-    this.propertyTypeState.subscribe(this.updatePropertyList.bind(this));
-    this.cityState.subscribe(this.updatePropertyList.bind(this));
-    this.addressState.subscribe(this.updatePropertyList.bind(this));
+    this.listingTypeState.subscribe(this.resetAndUpdatePropertyList.bind(this));
+    this.propertyTypeState.subscribe(this.resetAndUpdatePropertyList.bind(this));
+    this.cityState.subscribe(this.resetAndUpdatePropertyList.bind(this));
+    this.addressState.subscribe(this.resetAndUpdatePropertyList.bind(this));
+    
+    // Ініціалізуємо пагінатор
+    this.paginator = new Paginator(paginatorSelector, {
+      totalItems: 0,
+      itemsPerPage: this.itemsPerPage,
+      currentPage: this.currentPage,
+      onPageChange: this.handlePageChange.bind(this)
+    });
     
     // Ініціалізуємо список з початковими фільтрами
     this.updatePropertyList();
@@ -93,6 +107,24 @@ export class PropertyListComponent {
     }, this.scrollDelay);
   }
   
+  private handlePageChange(page: number): void {
+    // Змінюємо поточну сторінку і оновлюємо список
+    this.currentPage = page;
+    this.updatePropertyList();
+    
+    // Прокручуємо до початку списку
+    const propertyColumn = document.querySelector('.property-column');
+    if (propertyColumn) {
+      propertyColumn.scrollTop = 0;
+    }
+  }
+
+  private resetAndUpdatePropertyList(): void {
+    // Скидаємо сторінку на першу при зміні фільтрів
+    this.currentPage = 1;
+    this.updatePropertyList();
+  }
+  
   private updatePropertyList(): void {
     // Отримуємо поточні значення фільтрів
     const listingType = this.listingTypeState.getValue();
@@ -100,18 +132,15 @@ export class PropertyListComponent {
     const city = this.cityState.getValue();
     const addressFilter = this.addressState.getValue();
     
-    // Отримуємо відфільтровані елементи
-    let filteredItems = getFilteredProperties(listingType, propertyType, city);
+    // Отримуємо відфільтровані елементи з пагінацією
+    const result = getFilteredProperties(listingType, propertyType, city, {
+      page: this.currentPage,
+      itemsPerPage: this.itemsPerPage,
+      address: addressFilter
+    });
     
-    // Додаткова фільтрація за адресою, якщо вона є
-    if (addressFilter) {
-      filteredItems = filteredItems.filter(item => 
-        item.address.toLowerCase().includes(addressFilter.toLowerCase()) || 
-        item.street.toLowerCase() === addressFilter.toLowerCase()
-      );
-    }
-    
-    this.items = filteredItems;
+    this.items = result.items;
+    this.totalItems = result.totalItems;
     
     // Скидаємо індекси зображень при зміні фільтрів
     this.currentImageIndices.clear();
@@ -123,6 +152,14 @@ export class PropertyListComponent {
     
     // Скидаємо останній наведений елемент
     this.lastHoveredElement = null;
+    
+    // Оновлюємо пагінатор
+    if (this.paginator) {
+      this.paginator.updateOptions({
+        totalItems: this.totalItems,
+        currentPage: this.currentPage
+      });
+    }
     
     // Відображаємо елементи
     this.renderPropertyItems();
@@ -143,11 +180,8 @@ export class PropertyListComponent {
       return;
     }
     
-    // Обмежуємо кількість елементів до показу
-    const itemsToShow = this.items.slice(0, this.maxItemsToShow);
-    
-    // Відображаємо кожен елемент
-    itemsToShow.forEach(item => {
+    // Відображаємо кожен елемент для поточної сторінки
+    this.items.forEach(item => {
       const propertyCard = this.createPropertyCard(item);
       this.container?.appendChild(propertyCard);
     });
@@ -171,7 +205,7 @@ export class PropertyListComponent {
     const imageContainer = document.createElement('div');
     imageContainer.className = 'property-card__image';
     
-    // Додаємо зображення
+    // Додаємо зображення або заглушку
     if (item.images && item.images.length > 0) {
       const img = document.createElement('img');
       img.src = `img/properties/${item.images[currentImageIndex]}`;
@@ -229,6 +263,19 @@ export class PropertyListComponent {
         slideIndicator.textContent = `${currentImageIndex + 1}/${item.images.length}`;
         imageContainer.appendChild(slideIndicator);
       }
+    } else {
+      // Додаємо зображення-заглушку, якщо масив пустий або undefined
+      const img = document.createElement('img');
+      img.src = 'img/properties/placeholder.png'; // Шлях до зображення-заглушки
+      img.alt = 'No image available';
+      img.className = 'property-card__placeholder';
+      imageContainer.appendChild(img);
+      
+      // Додаємо текстову мітку на заглушці
+      const placeholderText = document.createElement('div');
+      placeholderText.className = 'property-card__placeholder-text';
+      placeholderText.textContent = 'No images available';
+      imageContainer.appendChild(placeholderText);
     }
     
     card.appendChild(imageContainer);
@@ -248,7 +295,7 @@ export class PropertyListComponent {
     address.className = 'property-card__address';
     address.textContent = item.address;
     infoContainer.appendChild(address);
-
+  
     // Опис
     const description = document.createElement('p');
     description.className = 'property-card__description';
@@ -316,7 +363,7 @@ export class PropertyListComponent {
     }
   }
   
-  // Метод для знищення компонента (вивільнення ресурсів)
+ 
   public destroy(): void {
     // Очищаємо таймери
     if (this.scrollTimeout !== null) {
@@ -330,10 +377,10 @@ export class PropertyListComponent {
     }
     
     // Відписуємося від подій
-    this.listingTypeState.unsubscribe(this.updatePropertyList.bind(this));
-    this.propertyTypeState.unsubscribe(this.updatePropertyList.bind(this));
-    this.cityState.unsubscribe(this.updatePropertyList.bind(this));
-    this.addressState.unsubscribe(this.updatePropertyList.bind(this));
+    this.listingTypeState.unsubscribe(this.resetAndUpdatePropertyList.bind(this));
+    this.propertyTypeState.unsubscribe(this.resetAndUpdatePropertyList.bind(this));
+    this.cityState.unsubscribe(this.resetAndUpdatePropertyList.bind(this));
+    this.addressState.unsubscribe(this.resetAndUpdatePropertyList.bind(this));
     
     // Знімаємо обробники подій скролу
     const propertyColumn = document.querySelector('.property-column');

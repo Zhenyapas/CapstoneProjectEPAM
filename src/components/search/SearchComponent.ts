@@ -713,20 +713,22 @@ export class SearchComponent {
   
   private performSearch(searchValue: string): void {
     if (!this.dropdown) return;
-    
+  
     // Отримуємо поточні фільтри
     const listingType = this.listingTypeState.getValue();
     const propertyType = this.propertyTypeState.getValue();
     const city = this.cityState.getValue();
     
     // Отримуємо відфільтровані об'єкти
-    const filteredItems = getFilteredProperties(listingType, propertyType, city);
+    const filteredResult = getFilteredProperties(listingType, propertyType, city);
+    const filteredItems = filteredResult.items;
     
-    // Якщо вулицю ще не вибрано, шукаємо вулиці
-    if (this.isSearchingStreet) {
+    // Визначаємо, що шукаємо - вулицю чи адресу на конкретній вулиці
+    if (!this.selectedStreet && this.isSearchingStreet) {
+      // Шукаємо вулиці
       this.searchStreets(filteredItems, searchValue);
     } else {
-      // Інакше шукаємо конкретні адреси на вибраній вулиці
+      // Шукаємо адреси на вибраній вулиці
       this.searchAddressesOnStreet(filteredItems, searchValue);
     }
   }
