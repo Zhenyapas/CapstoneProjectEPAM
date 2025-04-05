@@ -34,39 +34,8 @@ export class PropertyCounter {
     this.updatePropertyCount();
   }
   
-  // private updatePropertyCount(): void {
-  //   if (!this.countElement) return;
-    
-  //   // Отримуємо поточні значення фільтрів
-  //   const listingType = this.listingTypeState.getValue();
-  //   const propertyType = this.propertyTypeState.getValue();
-  //   const city = this.cityState.getValue();
-    
-  //   // Отримуємо відфільтровані елементи
-  //   let propertyItems = getFilteredProperties(listingType, propertyType, city);
-    
-  //   // Додаткова фільтрація за адресою, якщо потрібно
-  //   if (this.addressState) {
-  //     const address = this.addressState.getValue();
-  //     if (address) {
-  //       propertyItems = propertyItems.filter(item => 
-  //         item.address.toLowerCase() === address.toLowerCase()
-  //       );
-  //     }
-  //   }
-    
-  //   // Оновлюємо текст відповідно до типу нерухомості
-  //   const propertyTypeText = propertyType === 'house' ? 'houses' : 'apartments';
-    
-  //   // Формуємо повний текст
-  //   this.countElement.innerHTML = `
-  //     <p class="property-count__text">
-  //       There are <span class="property-count__number">${propertyItems.length}</span> ${propertyTypeText} let's take a look!
-  //     </p>
-  //   `;
-  // }
+  
 
-  // components/property/PropertyCounter.ts
 // private updatePropertyCount(): void {
 //   if (!this.countElement) return;
   
@@ -100,7 +69,10 @@ export class PropertyCounter {
 //     </p>
 //   `;
 // }
-private updatePropertyCount(): void {
+// Зробіть метод updatePropertyCount асинхронним
+
+
+private async updatePropertyCount(): Promise<void> {
   if (!this.countElement) return;
   
   // Отримуємо поточні значення фільтрів
@@ -108,28 +80,37 @@ private updatePropertyCount(): void {
   const propertyType = this.propertyTypeState.getValue();
   const city = this.cityState.getValue();
   
-  // Отримуємо відфільтровані елементи
-  let result = getFilteredProperties(listingType, propertyType, city);
-  
-  // Додаткова фільтрація за адресою, якщо вона є
-  if (this.addressState) {
-    const addressFilter = this.addressState.getValue();
-    if (addressFilter) {
-      // Адреса вже враховується в getFilteredProperties
-      result = getFilteredProperties(listingType, propertyType, city, {
-        address: addressFilter
-      });
+  try {
+    // Отримуємо відфільтровані елементи - зверніть увагу на await
+    let result = await getFilteredProperties(listingType, propertyType, city);
+    
+    // Додаткова фільтрація за адресою, якщо вона є
+    if (this.addressState) {
+      const addressFilter = this.addressState.getValue();
+      if (addressFilter) {
+        // Адреса вже враховується в getFilteredProperties
+        result = await getFilteredProperties(listingType, propertyType, city, {
+          address: addressFilter
+        });
+      }
     }
+    
+    // Оновлюємо текст відповідно до типу нерухомості
+    const propertyTypeText = propertyType === 'house' ? 'houses' : 'apartments';
+    
+    // Формуємо повний текст
+    this.countElement.innerHTML = `
+      <p class="property-count__text">
+        There are <span class="property-count__number">${result.totalItems}</span> ${propertyTypeText} let's take a look!
+      </p>
+    `;
+  } catch (error) {
+    console.error('Error updating property count:', error);
+    this.countElement.innerHTML = `
+      <p class="property-count__text">
+        Error loading properties. Please try again.
+      </p>
+    `;
   }
-  
-  // Оновлюємо текст відповідно до типу нерухомості
-  const propertyTypeText = propertyType === 'house' ? 'houses' : 'apartments';
-  
-  // Формуємо повний текст
-  this.countElement.innerHTML = `
-    <p class="property-count__text">
-      There are <span class="property-count__number">${result.totalItems}</span> ${propertyTypeText} let's take a look!
-    </p>
-  `;
 }
 }

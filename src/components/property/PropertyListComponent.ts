@@ -60,6 +60,15 @@ export class PropertyListComponent {
       onPageChange: this.handlePageChange.bind(this)
     });
     
+    // Додаємо індикатор завантаження
+    if (this.container) {
+      this.container.innerHTML = `
+        <div class="property-list__loading">
+          <p>Loading properties...</p>
+        </div>
+      `;
+    }
+    
     // Ініціалізуємо список з початковими фільтрами
     this.updatePropertyList();
   }
@@ -125,44 +134,66 @@ export class PropertyListComponent {
     this.updatePropertyList();
   }
   
-  private updatePropertyList(): void {
-    // Отримуємо поточні значення фільтрів
-    const listingType = this.listingTypeState.getValue();
-    const propertyType = this.propertyTypeState.getValue();
-    const city = this.cityState.getValue();
-    const addressFilter = this.addressState.getValue();
-    
-    // Отримуємо відфільтровані елементи з пагінацією
-    const result = getFilteredProperties(listingType, propertyType, city, {
-      page: this.currentPage,
-      itemsPerPage: this.itemsPerPage,
-      address: addressFilter
-    });
-    
-    this.items = result.items;
-    this.totalItems = result.totalItems;
-    
-    // Скидаємо індекси зображень при зміні фільтрів
-    this.currentImageIndices.clear();
-    
-    // Очищаємо маркери на карті при зміні фільтрів
-    if (this.mapComponent) {
-      this.mapComponent.clearAllMarkers();
-    }
-    
-    // Скидаємо останній наведений елемент
-    this.lastHoveredElement = null;
-    
-    // Оновлюємо пагінатор
-    if (this.paginator) {
-      this.paginator.updateOptions({
-        totalItems: this.totalItems,
-        currentPage: this.currentPage
+  private async updatePropertyList(): Promise<void> {
+    try {
+      // Показуємо індикатор завантаження
+      if (this.container) {
+        this.container.innerHTML = `
+          <div class="property-list__loading">
+            <p>Loading properties...</p>
+          </div>
+        `;
+      }
+      
+      // Отримуємо поточні значення фільтрів
+      const listingType = this.listingTypeState.getValue();
+      const propertyType = this.propertyTypeState.getValue();
+      const city = this.cityState.getValue();
+      const addressFilter = this.addressState.getValue();
+      
+      // Отримуємо відфільтровані елементи з пагінацією
+      const result = await getFilteredProperties(listingType, propertyType, city, {
+        page: this.currentPage,
+        itemsPerPage: this.itemsPerPage,
+        address: addressFilter
       });
+      
+      this.items = result.items;
+      this.totalItems = result.totalItems;
+      
+      // Скидаємо індекси зображень при зміні фільтрів
+      this.currentImageIndices.clear();
+      
+      // Очищаємо маркери на карті при зміні фільтрів
+      if (this.mapComponent) {
+        this.mapComponent.clearAllMarkers();
+      }
+      
+      // Скидаємо останній наведений елемент
+      this.lastHoveredElement = null;
+      
+      // Оновлюємо пагінатор
+      if (this.paginator) {
+        this.paginator.updateOptions({
+          totalItems: this.totalItems,
+          currentPage: this.currentPage
+        });
+      }
+      
+      // Відображаємо елементи
+      this.renderPropertyItems();
+    } catch (error) {
+      console.error('Error updating property list:', error);
+      
+      // Відображаємо повідомлення про помилку
+      if (this.container) {
+        this.container.innerHTML = `
+          <div class="property-list__error">
+            <p>Error loading properties. Please try again later.</p>
+          </div>
+        `;
+      }
     }
-    
-    // Відображаємо елементи
-    this.renderPropertyItems();
   }
   
   private renderPropertyItems(): void {

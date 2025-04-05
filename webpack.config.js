@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
@@ -20,6 +21,10 @@ module.exports = {
         generator: {
           filename: 'img/[name][ext]'
         }
+      },
+      {
+        test: /\.json$/,
+        type: 'javascript/auto'
       }
     ],
   },
@@ -34,6 +39,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'data', to: 'data' }  
+      ]
     })
   ],
   devServer: {
@@ -43,6 +53,9 @@ module.exports = {
       },
       {
         directory: path.join(__dirname, 'public'),
+      },
+      {
+        directory: path.join(__dirname, 'data'),  
       }
     ],
     hot: true

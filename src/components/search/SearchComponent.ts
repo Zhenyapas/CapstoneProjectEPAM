@@ -3,572 +3,6 @@ import { StateManager } from '../../services/StateManager';
 import { ListingType, PropertyType, City, PropertyItem } from '../../models/types';
 import { getFilteredProperties } from '../../models/propertyData';
 
-// export class SearchComponent {
-//   private container: HTMLElement | null = null;
-//   private input: HTMLInputElement | null = null;
-//   private button: HTMLButtonElement | null = null;
-//   private dropdown: HTMLElement | null = null;
-//   private searchTimeout: number | null = null;
-//   private selectedAddress: string | null = null;
-//   private addressStateManager: StateManager<string | null>;
-
-//   constructor(
-//     containerSelector: string,
-//     private listingTypeState: StateManager<ListingType>,
-//     private propertyTypeState: StateManager<PropertyType>,
-//     private cityState: StateManager<City>
-//   ) {
-//     this.container = document.querySelector(containerSelector);
-//     this.addressStateManager = new StateManager<string | null>(null);
-    
-//     if (!this.container) {
-//       console.error(`Search container with selector "${containerSelector}" not found`);
-//       return;
-//     }
-    
-//     this.initElements();
-//     this.initEvents();
-//   }
-  
-//   private initElements(): void {
-//     if (!this.container) return;
-    
-//     this.input = this.container.querySelector('.search-placeholder');
-//     this.button = this.container.querySelector('.search-button');
-    
-//     // Створюємо випадаючий список, якщо його ще немає
-//     if (!this.dropdown) {
-//       this.dropdown = document.createElement('div');
-//       this.dropdown.className = 'search-dropdown';
-//       this.dropdown.style.display = 'none';
-//       this.container.appendChild(this.dropdown);
-//     }
-    
-//     // Початково кнопка пошуку неактивна
-//     if (this.button) {
-//       this.button.disabled = true;
-//     }
-//   }
-  
-//   private initEvents(): void {
-//     if (!this.input || !this.button) return;
-    
-//     // Подія при введенні тексту
-//     this.input.addEventListener('input', this.handleInputChange.bind(this));
-    
-//     // Подія натискання кнопки пошуку
-//     this.button.addEventListener('click', this.handleSearch.bind(this));
-    
-//     // Закриваємо випадаючий список при кліку поза ним
-//     document.addEventListener('click', (e) => {
-//       if (this.container && !this.container.contains(e.target as Node)) {
-//         this.hideDropdown();
-//       }
-//     });
-    
-//     // Обробка кліку Enter у полі вводу
-//     this.input.addEventListener('keydown', (e) => {
-//       if (e.key === 'Enter' && this.button && !this.button.disabled) {
-//         this.handleSearch();
-//       }
-//     });
-//   }
-  
-//   private handleInputChange(): void {
-//     if (!this.input || !this.dropdown) return;
-    
-//     const searchValue = this.input.value.trim();
-    
-//     // Скидаємо обрану адресу та деактивуємо кнопку
-//     this.selectedAddress = null;
-//     if (this.button) {
-//       this.button.disabled = true;
-//     }
-    
-//     // Якщо поле пусте, ховаємо випадаючий список
-//     if (!searchValue) {
-//       this.hideDropdown();
-//       return;
-//     }
-    
-//     // Показуємо випадаючий список з індикатором пошуку
-//     this.showDropdown();
-//     this.dropdown.innerHTML = '<div class="search-dropdown__searching">Searching...</div>';
-    
-//     // Затримка для імітації пошуку
-//     if (this.searchTimeout) {
-//       clearTimeout(this.searchTimeout);
-//     }
-    
-//     this.searchTimeout = window.setTimeout(() => {
-//       this.performSearch(searchValue);
-//     }, 500); // Затримка 500мс
-//   }
-  
-//   private performSearch(searchValue: string): void {
-//     if (!this.dropdown) return;
-    
-//     // Отримуємо поточні фільтри
-//     const listingType = this.listingTypeState.getValue();
-//     const propertyType = this.propertyTypeState.getValue();
-//     const city = this.cityState.getValue();
-    
-//     // Отримуємо відфільтровані об'єкти
-//     const filteredItems = getFilteredProperties(listingType, propertyType, city);
-    
-//     // Фільтруємо адреси за пошуковим запитом
-//     const matchingAddresses = filteredItems
-//       .filter(item => item.address.toLowerCase().includes(searchValue.toLowerCase()))
-//       .map(item => item.address);
-    
-//     // Виводимо результати в випадаючий список
-//     if (matchingAddresses.length > 0) {
-//       this.dropdown.innerHTML = matchingAddresses
-//         .map(address => `<div class="search-dropdown__item">${address}</div>`)
-//         .join('');
-      
-//       // Додаємо обробники подій для елементів списку
-//       const items = this.dropdown.querySelectorAll('.search-dropdown__item');
-//       items.forEach(item => {
-//         item.addEventListener('click', () => {
-//           this.selectAddress(item.textContent || '');
-//         });
-//       });
-//     } else {
-//       this.dropdown.innerHTML = '<div class="search-dropdown__empty">There are no options at this address</div>';
-//     }
-//   }
-  
-//   private selectAddress(address: string): void {
-//     if (!this.input || !this.button) return;
-    
-//     this.selectedAddress = address;
-//     this.input.value = address;
-    
-//     // Активуємо кнопку пошуку
-//     this.button.disabled = false;
-    
-//     // Ховаємо випадаючий список
-//     this.hideDropdown();
-//   }
-  
-//   private handleSearch(): void {
-//     if (!this.selectedAddress) return;
-    
-//     // Встановлюємо вибрану адресу в стан
-//     this.addressStateManager.setValue(this.selectedAddress);
-    
-//     // Тут можна додати логіку для фільтрації об'єктів за адресою
-//     console.log(`Searching for: ${this.selectedAddress}`);
-//   }
-  
-//   private showDropdown(): void {
-//     if (this.dropdown) {
-//       this.dropdown.style.display = 'block';
-//     }
-//   }
-  
-//   private hideDropdown(): void {
-//     if (this.dropdown) {
-//       this.dropdown.style.display = 'none';
-//     }
-//   }
-  
-//   // Метод для отримання стану адреси
-//   public getAddressState(): StateManager<string | null> {
-//     return this.addressStateManager;
-//   }
-// }
-
-// components/search/SearchComponent.ts
-
-// export class SearchComponent {
-//   private container: HTMLElement | null = null;
-//   private input: HTMLInputElement | null = null;
-//   private button: HTMLButtonElement | null = null;
-//   private dropdown: HTMLElement | null = null;
-//   private searchTimeout: number | null = null;
-//   private selectedAddress: string | null = null;
-//   private selectedStreet: string | null = null;
-//   private isSearchingStreet: boolean = true; // Режим пошуку (вулиця/номер будинку)
-//   private addressStateManager: StateManager<string | null>;
-
-//   constructor(
-//     containerSelector: string,
-//     private listingTypeState: StateManager<ListingType>,
-//     private propertyTypeState: StateManager<PropertyType>,
-//     private cityState: StateManager<City>
-//   ) {
-//     this.container = document.querySelector(containerSelector);
-//     this.addressStateManager = new StateManager<string | null>(null);
-    
-//     if (!this.container) {
-//       console.error(`Search container with selector "${containerSelector}" not found`);
-//       return;
-//     }
-    
-//     this.initElements();
-//     this.initEvents();
-    
-//     // Підписуємося на зміни інших фільтрів
-//     this.listingTypeState.subscribe(this.resetSearch.bind(this));
-//     this.propertyTypeState.subscribe(this.resetSearch.bind(this));
-//     this.cityState.subscribe(this.resetSearch.bind(this));
-//   }
-  
-//   private initElements(): void {
-//     if (!this.container) return;
-    
-//     this.input = this.container.querySelector('.search-placeholder');
-//     this.button = this.container.querySelector('.search-button');
-    
-//     // Створюємо випадаючий список, якщо його ще немає
-//     if (!this.dropdown) {
-//       this.dropdown = document.createElement('div');
-//       this.dropdown.className = 'search-dropdown';
-//       this.dropdown.style.display = 'none';
-//       this.container.appendChild(this.dropdown);
-//     }
-    
-//     // Початково кнопка пошуку неактивна
-//     if (this.button) {
-//       this.button.disabled = true;
-//     }
-//   }
-  
-//   private initEvents(): void {
-//     if (!this.input || !this.button) return;
-    
-//     // Подія при введенні тексту
-//     this.input.addEventListener('input', this.handleInputChange.bind(this));
-    
-//     // Подія натискання кнопки пошуку
-//     this.button.addEventListener('click', this.handleSearch.bind(this));
-    
-//     // Закриваємо випадаючий список при кліку поза ним
-//     document.addEventListener('click', (e) => {
-//       if (this.container && !this.container.contains(e.target as Node)) {
-//         this.hideDropdown();
-//       }
-//     });
-    
-//     // Обробка кліку Enter у полі вводу
-//     this.input.addEventListener('keydown', (e) => {
-//       if (e.key === 'Enter' && this.button && !this.button.disabled) {
-//         this.handleSearch();
-//       }
-//     });
-//   }
-  
-//   private handleInputChange(): void {
-//     if (!this.input || !this.dropdown) return;
-    
-//     const searchValue = this.input.value.trim();
-    
-//     // Якщо вибрана вулиця і видалено текст, скидаємо вибір вулиці
-//     if (this.selectedStreet && !searchValue.includes(this.selectedStreet)) {
-//       this.resetStreetSelection();
-//       return;
-//     }
-    
-//     // Якщо вибрана вулиця, оновлюємо пошуковий запит для номерів будинків
-//     if (this.selectedStreet && !this.isSearchingStreet) {
-//       const streetPrefix = this.selectedStreet + ' ';
-//       if (searchValue.startsWith(streetPrefix)) {
-//         const buildingQuery = searchValue.substring(streetPrefix.length);
-//         this.updateBuildingSearch(buildingQuery);
-//         return;
-//       }
-//     }
-    
-//     // Скидаємо обрану адресу та деактивуємо кнопку
-//     this.selectedAddress = null;
-//     if (this.button) {
-//       this.button.disabled = true;
-//     }
-    
-//     // Якщо поле пусте, ховаємо випадаючий список і скидаємо фільтр
-//     if (!searchValue) {
-//       this.hideDropdown();
-//       this.addressStateManager.setValue(null);
-//       return;
-//     }
-    
-//     // Показуємо випадаючий список з індикатором пошуку
-//     this.showDropdown();
-//     this.dropdown.innerHTML = '<div class="search-dropdown__searching">Searching...</div>';
-    
-//     // Затримка для імітації пошуку
-//     if (this.searchTimeout) {
-//       clearTimeout(this.searchTimeout);
-//     }
-    
-//     this.searchTimeout = window.setTimeout(() => {
-//       this.performSearch(searchValue);
-//     }, 500); // Затримка 500мс
-//   }
-  
-//   private updateBuildingSearch(query: string): void {
-//     // Викликаємо пошук адрес на вулиці з запитом для номера будинку
-//     if (this.searchTimeout) {
-//       clearTimeout(this.searchTimeout);
-//     }
-    
-//     // Показуємо випадаючий список з індикатором пошуку
-//     this.showDropdown();
-//     if (this.dropdown) {
-//       this.dropdown.innerHTML = '<div class="search-dropdown__searching">Searching...</div>';
-//     }
-    
-//     this.searchTimeout = window.setTimeout(() => {
-//       if (this.selectedStreet) {
-//         const fullQuery = this.selectedStreet + ' ' + query;
-//         this.performSearch(fullQuery);
-//       }
-//     }, 500);
-//   }
-  
-//   private performSearch(searchValue: string): void {
-//     if (!this.dropdown) return;
-    
-//     // Отримуємо поточні фільтри
-//     const listingType = this.listingTypeState.getValue();
-//     const propertyType = this.propertyTypeState.getValue();
-//     const city = this.cityState.getValue();
-    
-//     // Отримуємо відфільтровані об'єкти
-//     const filteredItems = getFilteredProperties(listingType, propertyType, city);
-    
-//     // Якщо вулицю ще не вибрано, шукаємо вулиці
-//     if (this.isSearchingStreet) {
-//       this.searchStreets(filteredItems, searchValue);
-//     } else {
-//       // Інакше шукаємо конкретні адреси на вибраній вулиці
-//       this.searchAddressesOnStreet(filteredItems, searchValue);
-//     }
-//   }
-  
-// private searchStreets(items: PropertyItem[], searchValue: string): void {
-//   if (!this.dropdown) return;
-  
-//   // Отримуємо унікальні назви вулиць
-//   const streets = new Set<string>();
-  
-//   items.forEach(item => {
-//     // Використовуємо поле street замість extractStreetName
-//     if (item.street.toLowerCase().includes(searchValue.toLowerCase())) {
-//       streets.add(item.street);
-//     }
-//   });
-    
-//     // Перетворюємо Set на масив і сортуємо
-//     const sortedStreets = Array.from(streets).sort();
-    
-//     // Виводимо результати в випадаючий список
-//     if (sortedStreets.length > 0) {
-//       this.dropdown.innerHTML = sortedStreets
-//         .map(street => `<div class="search-dropdown__item search-dropdown__item--street">${street}</div>`)
-//         .join('');
-      
-//       // Додаємо обробники подій для вибору вулиці
-//       const streetItems = this.dropdown.querySelectorAll('.search-dropdown__item--street');
-//       streetItems.forEach(item => {
-//         item.addEventListener('click', () => {
-//           this.selectStreet(item.textContent || '');
-//         });
-//       });
-//     } else {
-//       this.dropdown.innerHTML = '<div class="search-dropdown__empty">No streets found</div>';
-//     }
-//   }
-  
-//   private searchAddressesOnStreet(items: PropertyItem[], searchValue: string): void {
-//     if (!this.dropdown || !this.selectedStreet) return;
-    
-//     // Фільтруємо адреси, які містять вибрану вулицю та пошуковий запит
-//     const matchingAddresses = items
-//       .filter(item => {
-//         const hasStreet = item.address.includes(this.selectedStreet!);
-//         const matchesSearch = searchValue ? 
-//           item.address.toLowerCase().includes(searchValue.toLowerCase()) : 
-//           true;
-//         return hasStreet && matchesSearch;
-//       })
-//       .map(item => item.address);
-    
-//     // Виводимо результати в випадаючий список
-//     if (matchingAddresses.length > 0) {
-//       this.dropdown.innerHTML = matchingAddresses
-//         .map(address => `<div class="search-dropdown__item">${address}</div>`)
-//         .join('');
-      
-//       // Додаємо можливість повернутися до пошуку вулиць
-//       this.dropdown.innerHTML = `
-//         <div class="search-dropdown__back">← Back to street search</div>
-//         ${this.dropdown.innerHTML}
-//       `;
-      
-//       // Додаємо обробник для кнопки "назад"
-//       const backButton = this.dropdown.querySelector('.search-dropdown__back');
-//       if (backButton) {
-//         backButton.addEventListener('click', () => {
-//           this.resetStreetSelection();
-//         });
-//       }
-      
-//       // Додаємо обробники подій для елементів списку
-//       const items = this.dropdown.querySelectorAll('.search-dropdown__item');
-//       items.forEach(item => {
-//         item.addEventListener('click', () => {
-//           this.selectAddress(item.textContent || '');
-//         });
-//       });
-//     } else {
-//       this.dropdown.innerHTML = `
-//         <div class="search-dropdown__back">← Back to street search</div>
-//         <div class="search-dropdown__empty">No addresses found on this street</div>
-//       `;
-      
-//       // Додаємо обробник для кнопки "назад"
-//       const backButton = this.dropdown.querySelector('.search-dropdown__back');
-//       if (backButton) {
-//         backButton.addEventListener('click', () => {
-//           this.resetStreetSelection();
-//         });
-//       }
-//     }
-//   }
-  
-//   private selectStreet(street: string): void {
-//     if (!this.input) return;
-    
-//     this.selectedStreet = street;
-//     this.isSearchingStreet = false;
-//     this.input.value = street + ' '; // Додаємо пробіл, щоб користувач міг продовжити вводити номер
-    
-//     // Переміщуємо курсор в кінець рядка
-//     this.input.focus();
-//     this.input.selectionStart = this.input.value.length;
-//     this.input.selectionEnd = this.input.value.length;
-    
-//     // Виконуємо пошук адрес на вибраній вулиці
-//     this.performSearch(this.input.value);
-//   }
-  
-//   private selectAddress(address: string): void {
-//     if (!this.input || !this.button) return;
-    
-//     this.selectedAddress = address;
-//     this.input.value = address;
-    
-//     // Активуємо кнопку пошуку
-//     this.button.disabled = false;
-    
-//     // Ховаємо випадаючий список
-//     this.hideDropdown();
-//   }
-  
-//   private resetStreetSelection(): void {
-//     if (!this.input) return;
-    
-//     this.selectedStreet = null;
-//     this.isSearchingStreet = true;
-    
-//     // Очищаємо поле вводу
-//     this.input.value = '';
-    
-//     // Деактивуємо кнопку пошуку
-//     if (this.button) {
-//       this.button.disabled = true;
-//     }
-    
-//     // Ховаємо випадаючий список, а потім показуємо знову для пошуку вулиць
-//     this.hideDropdown();
-//     this.handleInputChange();
-//   }
-  
-//   private handleSearch(): void {
-//     if (!this.selectedAddress) return;
-    
-//     // Встановлюємо вибрану адресу в стан
-//     this.addressStateManager.setValue(this.selectedAddress);
-    
-//     // Тут можна додати логіку для фільтрації об'єктів за адресою
-//     console.log(`Searching for: ${this.selectedAddress}`);
-//   }
-  
-//   private showDropdown(): void {
-//     if (this.dropdown) {
-//       this.dropdown.style.display = 'block';
-//     }
-//   }
-  
-//   private hideDropdown(): void {
-//     if (this.dropdown) {
-//       this.dropdown.style.display = 'none';
-//     }
-//   }
-  
-//   // Метод для скидання пошуку при зміні інших фільтрів
-//   private resetSearch(): void {
-//     if (!this.input) return;
-    
-//     // Очищаємо поле вводу
-//     this.input.value = '';
-//     this.selectedAddress = null;
-//     this.selectedStreet = null;
-//     this.isSearchingStreet = true;
-    
-//     // Деактивуємо кнопку пошуку
-//     if (this.button) {
-//       this.button.disabled = true;
-//     }
-    
-//     // Ховаємо випадаючий список
-//     this.hideDropdown();
-    
-//     // Скидаємо стан адреси
-//     this.addressStateManager.setValue(null);
-//   }
-  
-//   // Метод для очищення пошуку
-//   private clearSearch(): void {
-//     if (!this.input) return;
-    
-//     this.input.value = '';
-//     this.selectedAddress = null;
-//     this.selectedStreet = null;
-//     this.isSearchingStreet = true;
-    
-//     if (this.button) {
-//       this.button.disabled = true;
-//     }
-    
-//     // Скидаємо стан адреси
-//     this.addressStateManager.setValue(null);
-//     this.hideDropdown();
-//   }
-  
-//   // Допоміжний метод для вилучення назви вулиці з адреси
-//   private extractStreetName(address: string): string {
-//     // Спрощена логіка вилучення назви вулиці
-//     // Припускаємо, що формат адреси: "Назва вулиці, Номер будинку, ..."
-//     const parts = address.split(',');
-//     if (parts.length > 0) {
-//       return parts[0].trim();
-//     }
-//     return address;
-//   }
-  
-//   // Метод для отримання стану адреси
-//   public getAddressState(): StateManager<string | null> {
-//     return this.addressStateManager;
-//   }
-// }
-
-// components/search/SearchComponent.ts
-
-
 export class SearchComponent {
   private container: HTMLElement | null = null;
   private input: HTMLInputElement | null = null;
@@ -688,7 +122,10 @@ export class SearchComponent {
     }
     
     this.searchTimeout = window.setTimeout(() => {
-      this.performSearch(searchValue);
+      // Викликаємо асинхронний метод, але не чекаємо на нього
+      this.performSearch(searchValue).catch(error => {
+        console.error('Error in search:', error);
+      });
     }, 500); // Затримка 500мс
   }
   
@@ -706,30 +143,40 @@ export class SearchComponent {
     
     this.searchTimeout = window.setTimeout(() => {
       if (this.selectedStreet) {
-        this.performSearch(query);
+        // Викликаємо асинхронний метод, але не чекаємо на нього
+        this.performSearch(query).catch(error => {
+          console.error('Error in building search:', error);
+        });
       }
     }, 500);
   }
   
-  private performSearch(searchValue: string): void {
+  private async performSearch(searchValue: string): Promise<void> {
     if (!this.dropdown) return;
   
-    // Отримуємо поточні фільтри
-    const listingType = this.listingTypeState.getValue();
-    const propertyType = this.propertyTypeState.getValue();
-    const city = this.cityState.getValue();
-    
-    // Отримуємо відфільтровані об'єкти
-    const filteredResult = getFilteredProperties(listingType, propertyType, city);
-    const filteredItems = filteredResult.items;
-    
-    // Визначаємо, що шукаємо - вулицю чи адресу на конкретній вулиці
-    if (!this.selectedStreet && this.isSearchingStreet) {
-      // Шукаємо вулиці
-      this.searchStreets(filteredItems, searchValue);
-    } else {
-      // Шукаємо адреси на вибраній вулиці
-      this.searchAddressesOnStreet(filteredItems, searchValue);
+    try {
+      // Отримуємо поточні фільтри
+      const listingType = this.listingTypeState.getValue();
+      const propertyType = this.propertyTypeState.getValue();
+      const city = this.cityState.getValue();
+      
+      // Отримуємо відфільтровані об'єкти - додаємо await
+      const filteredResult = await getFilteredProperties(listingType, propertyType, city);
+      const filteredItems = filteredResult.items;
+      
+      // Визначаємо, що шукаємо - вулицю чи адресу на конкретній вулиці
+      if (!this.selectedStreet && this.isSearchingStreet) {
+        // Шукаємо вулиці
+        this.searchStreets(filteredItems, searchValue);
+      } else {
+        // Шукаємо адреси на вибраній вулиці
+        this.searchAddressesOnStreet(filteredItems, searchValue);
+      }
+    } catch (error) {
+      console.error('Error performing search:', error);
+      if (this.dropdown) {
+        this.dropdown.innerHTML = '<div class="search-dropdown__error">Error loading search results</div>';
+      }
     }
   }
   
@@ -881,7 +328,9 @@ export class SearchComponent {
     this.input.selectionEnd = this.input.value.length;
     
     // Виконуємо пошук адрес на вибраній вулиці
-    this.performSearch(this.input.value);
+    this.performSearch(this.input.value).catch(error => {
+      console.error('Error in street selection search:', error);
+    });
   }
   
   private selectAddress(address: string): void {
