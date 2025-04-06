@@ -1,5 +1,5 @@
 
-Project Description
+## Project Description
 
 YO!APARTMENTS is a web application for searching and browsing real estate properties. The platform allows users to find apartments and houses for both rent and sale in various cities across Ukraine. The project is developed using modern technologies and web development practices.
 Key Features
@@ -15,7 +15,7 @@ Pagination: convenient navigation through property pages
 Responsive Design: optimized for mobile devices and tablets
 
 
-Technologies
+## Technologies
 
 TypeScript: strongly typed foundation for the codebase
 Vanilla JS: no frameworks, pure JavaScript
@@ -26,7 +26,7 @@ ESLint & Stylelint: for code quality assurance
 JSON: for storing and managing property data
 
 
-Project Architecture
+## Project Architecture
 The project is built on object-oriented programming principles and a component-based approach:
 
 Components: modular approach to creating UI elements
@@ -35,7 +35,7 @@ Asynchronous Operations: using Promises and async/await for data handling
 Type Safety: complete typing of all components and data
 
 
-Project Structure
+## Project Structure
 
 src/
 ├── components/         # UI components
@@ -56,7 +56,7 @@ src/
 └── index.ts            # Application entry point
 
 
-Installation and Setup
+## Installation and Setup
 
 1. Clone the repository:
 git clone https://gitlab.com/Zhenyapas/yoapartments.git
