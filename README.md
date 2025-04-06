@@ -1,3 +1,4 @@
+
 Project Description
 
 YO!APARTMENTS is a web application for searching and browsing real estate properties. The platform allows users to find apartments and houses for both rent and sale in various cities across Ukraine. The project is developed using modern technologies and web development practices.
@@ -96,3 +97,4 @@ Adding real estate market statistics
 
 Author
 This project was developed as part of the EPAM Front-End program.
+
