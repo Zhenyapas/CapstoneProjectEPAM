@@ -36,7 +36,6 @@ export class FilterToggleComponent {
 
     const buttonBaseClass = 'filter-placeholder__button';
     
-    // Встановлюємо початковий стан залежно від активної кнопки
     if (this.apartmentButton.classList.contains(`${buttonBaseClass}${this.activeClass}`)) {
       this.container.classList.add('apartment-active');
       this.stateManager.setValue('apartment');
@@ -45,11 +44,9 @@ export class FilterToggleComponent {
       this.stateManager.setValue('house');
     }
 
-    // Додаємо обробники подій
     this.houseButton.addEventListener('click', () => this.activateHouse(buttonBaseClass));
     this.apartmentButton.addEventListener('click', () => this.activateApartment(buttonBaseClass));
     
-    // Підписуємося на зміни стану
     this.stateManager.subscribe(this.handleStateChange.bind(this));
   }
 
@@ -75,7 +72,6 @@ export class FilterToggleComponent {
     this.container.classList.add('house-active');
     this.container.classList.remove('apartment-active');
 
-    // Оновлюємо стан, якщо потрібно
     if (updateState) {
       this.stateManager.setValue('house');
     }
@@ -93,7 +89,6 @@ export class FilterToggleComponent {
     this.container.classList.add('apartment-active');
     this.container.classList.remove('house-active');
 
-    // Оновлюємо стан, якщо потрібно
     if (updateState) {
       this.stateManager.setValue('apartment');
     }

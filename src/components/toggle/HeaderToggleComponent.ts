@@ -36,7 +36,6 @@ export class HeaderToggleComponent {
 
     const buttonBaseClass = 'header__toggle__btn';
     
-    // Встановлюємо початковий стан залежно від активної кнопки
     if (this.saleButton.classList.contains(`${buttonBaseClass}${this.activeClass}`)) {
       this.container.classList.add('sale-active');
       this.stateManager.setValue('sale');
@@ -45,11 +44,9 @@ export class HeaderToggleComponent {
       this.stateManager.setValue('rent');
     }
 
-    // Додаємо обробники подій
     this.rentButton.addEventListener('click', () => this.activateRent(buttonBaseClass));
     this.saleButton.addEventListener('click', () => this.activateSale(buttonBaseClass));
     
-    // Підписуємося на зміни стану
     this.stateManager.subscribe(this.handleStateChange.bind(this));
   }
 
@@ -57,7 +54,7 @@ export class HeaderToggleComponent {
     const buttonBaseClass = 'header__toggle__btn';
     
     if (listingType === 'rent') {
-      this.activateRent(buttonBaseClass, false); // false для запобігання циклічних викликів
+      this.activateRent(buttonBaseClass, false);
     } else {
       this.activateSale(buttonBaseClass, false);
     }
@@ -75,7 +72,6 @@ export class HeaderToggleComponent {
     this.container.classList.add('rent-active');
     this.container.classList.remove('sale-active');
 
-    // Оновлюємо стан, якщо потрібно
     if (updateState) {
       this.stateManager.setValue('rent');
     }
@@ -93,7 +89,6 @@ export class HeaderToggleComponent {
     this.container.classList.add('sale-active');
     this.container.classList.remove('rent-active');
 
-    // Оновлюємо стан, якщо потрібно
     if (updateState) {
       this.stateManager.setValue('sale');
     }
