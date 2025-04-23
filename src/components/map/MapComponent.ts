@@ -63,25 +63,23 @@ export class MapComponent {
       title: title,
       animation: google.maps.Animation.DROP,
       icon: {
-        url: 'img/Pin.svg', // Шлях до вашої іконки
-        scaledSize: new google.maps.Size(60, 60), // Розмір іконки
-        origin: new google.maps.Point(0, 0), // Початкова точка іконки
-        anchor: new google.maps.Point(20, 40) // Точка, яка буде прикріплена до позиції маркера (зазвичай внизу іконки)
+        url: 'img/Pin.svg', 
+        scaledSize: new google.maps.Size(60, 60), 
+        origin: new google.maps.Point(0, 0), 
+        anchor: new google.maps.Point(20, 40) 
       }
     });
     
-    // Центруємо карту на маркері
     this.map.panTo(coordinates);
   }
   
-  // Додаємо метод для прибирання тимчасового маркера
+
   public hidePropertyMarker(): void {
     if (this.tempMarker) {
       this.tempMarker.setMap(null);
       this.tempMarker = null;
     }
     
-    // Повертаємо карту до основного міста
     if (this.map) {
       const cityCoordinates = this.getCoordinatesForCity(this.cityStateManager.getValue());
       this.map.panTo(cityCoordinates);
@@ -99,7 +97,6 @@ export class MapComponent {
       this.activeMarker = null;
     }
     
-    // Повертаємо карту до основного міста
     if (this.map) {
       const cityCoordinates = this.getCoordinatesForCity(this.cityStateManager.getValue());
       this.map.panTo(cityCoordinates);
@@ -108,18 +105,16 @@ export class MapComponent {
 
   private loadGoogleMapsAPI(): Promise<void> {
     return new Promise((resolve, reject) => {
-      // Перевіряємо, чи вже завантажено API
       if (window.google && window.google.maps) {
         resolve();
         return;
       }
 
-      // Створюємо callback для Google Maps API
       window.initMap = () => {
         resolve();
       };
 
-      // Додаємо скрипт Google Maps API
+
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEYS.GOOGLE_MAPS}&callback=initMap&language=uk`;
       script.async = true;
@@ -132,14 +127,13 @@ export class MapComponent {
   private initMap(): void {
     if (!this.mapElement) return;
 
-    // Налаштування за замовчуванням (Київ)
     const defaultCity = this.cityStateManager.getValue();
     const defaultCoordinates = this.getCoordinatesForCity(defaultCity);
 
     this.map = new google.maps.Map(this.mapElement, {
       center: defaultCoordinates,
       zoom: 15,
-      styles: this.getMapStyles(), // Кастомний стиль карти
+      styles: this.getMapStyles(), 
       mapTypeControl: false,
       streetViewControl: false,
       zoomControl: true,
@@ -153,27 +147,23 @@ export class MapComponent {
     
     const coordinates = this.getCoordinatesForCity(city);
 
-    // Плавно переміщуємо карту до нового міста
     this.map.panTo(coordinates);
     
-    // Змінюємо зум відповідно до міста
     this.map.setZoom(12);
 
   }
 
   private getCoordinatesForCity(city: City): Coordinates {
-    // Повертаємо координати для міста або координати Києва за замовчуванням
     return this.cityCoordinates[city.toLowerCase()] || this.cityCoordinates['kyiv'];
   }
 
-  // Кастомний стиль для Google Maps
   private getMapStyles(): google.maps.MapTypeStyle[] {
     return [
     {
       "featureType": "administrative.locality",
       "elementType": "labels",
       "stylers": [
-        { "visibility": "off" }  // Повністю прибирає назви міст
+        { "visibility": "off" } 
       ]
     },
       {

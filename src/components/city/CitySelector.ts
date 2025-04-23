@@ -33,7 +33,6 @@ export class CitySelector {
   private initState(): void {
     if (!this.currentCityElement || !this.items) return;
     
-    // Знаходимо активний елемент
     const activeItem = Array.from(this.items).find(item => 
       item.classList.contains('city-selector__item--active')
     );
@@ -43,7 +42,6 @@ export class CitySelector {
       this.stateManager.setValue(cityValue);
     }
     
-    // Підписуємося на зміни стану
     this.stateManager.subscribe(this.handleStateChange.bind(this));
   }
 
@@ -70,7 +68,7 @@ export class CitySelector {
       });
     }
     
-    // Закриття при кліку поза селектором
+
     document.addEventListener('click', (e) => {
       if (this.selector && !this.selector.contains(e.target as Node) && this.isOpen) {
         this.closeDropdown();
@@ -103,19 +101,15 @@ export class CitySelector {
   private selectCity(item: HTMLElement, updateState: boolean = true): void {
     if (!this.currentCityElement || !this.items) return;
     
-    // Отримання значення та тексту
     const cityValue = item.getAttribute('data-value') || '';
     const cityText = item.textContent;
     
-    // Плавний перехід для тексту
     this.animateTextChange(this.currentCityElement, cityText || '');
     
-    // Оновлення активного класу з плавним переходом
     this.items.forEach(i => {
       if (i.classList.contains('city-selector__item--active')) {
         i.classList.add('city-selector__item--fade-out');
         
-        // Видаляємо класи після завершення анімації
         setTimeout(() => {
           i.classList.remove('city-selector__item--active');
           i.classList.remove('city-selector__item--fade-out');
@@ -123,7 +117,6 @@ export class CitySelector {
       }
     });
     
-    // Додаємо клас активності з плавним з'явленням
     item.classList.add('city-selector__item--fade-in');
     item.classList.add('city-selector__item--active');
     
@@ -131,27 +124,23 @@ export class CitySelector {
       item.classList.remove('city-selector__item--fade-in');
     }, 300);
     
-    // Закриття випадаючого списку з затримкою
     setTimeout(() => {
       this.closeDropdown();
     }, 200);
     
-    // Оновлюємо стан, якщо потрібно
     if (updateState) {
       this.stateManager.setValue(cityValue);
     }
   }
   
   private animateTextChange(element: HTMLElement, newText: string): void {
-    // Створюємо плавне зникнення
+
     element.style.opacity = '0';
     element.style.transform = 'translateY(-5px)';
     
-    // Змінюємо текст після зникнення
     setTimeout(() => {
       element.textContent = newText;
       
-      // Плавно показуємо з новим текстом
       setTimeout(() => {
         element.style.opacity = '1';
         element.style.transform = 'translateY(0)';
